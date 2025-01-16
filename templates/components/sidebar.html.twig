@@ -1,0 +1,72 @@
+{% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) %}
+
+{% block sidebar %}
+    <div class="flex h-[65px] bg-whitee flex-col p-[20px]  gap-[40px] rounded-[40px] shadows justify-start lg:min-w-[348px] lg:h-full">
+        <!-- Side Panel -->
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fmanage.hhhfprogram.org%2Fassets%2Fimages%2Flogo-dashboard.png&sp=1736950662Tc1df45b6361ae5ddc9a004451e4c01a8b4b19fe862c6f914f5886e2f70993940"></img>
+        <!-- Logo -->
+
+        <div class="flex flex-col gap-[40px] w-full h-auto "> <!-- Menù -->
+            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
+                <img class="w-[40px] aspect-square p-[8px]"
+                     src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fstatic-00.iconduck.com%2Fassets.00%2Fdashboard-icon-2048x2048-4tsdcjxa.png&sp=1736950662Tf36f982ff7d74395b56885c3f8dd348f23093e9eb75227e5c8c35c73d6b6db58"
+                     alt="">
+                <p class="p text-grayy capitalize">Dashboard</p>
+            </div>
+            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
+                <img class="w-[40px] aspect-square p-[8px]"
+                     src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fstatic-00.iconduck.com%2Fassets.00%2Fdashboard-icon-2048x2048-4tsdcjxa.png&sp=1736950662Tf36f982ff7d74395b56885c3f8dd348f23093e9eb75227e5c8c35c73d6b6db58"
+                     alt="">
+                <p class="p text-grayy capitalize">corsi</p>
+            </div>
+            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
+                <img class="w-[40px] aspect-square p-[8px]"
+                     src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fstatic-00.iconduck.com%2Fassets.00%2Fdashboard-icon-2048x2048-4tsdcjxa.png&sp=1736950662Tf36f982ff7d74395b56885c3f8dd348f23093e9eb75227e5c8c35c73d6b6db58"
+                     alt="">
+                <p class="p text-grayy capitalize">voti</p>
+            </div>
+            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
+                <img class="w-[40px] aspect-square p-[8px]"
+                     src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fstatic-00.iconduck.com%2Fassets.00%2Fdashboard-icon-2048x2048-4tsdcjxa.png&sp=1736950662Tf36f982ff7d74395b56885c3f8dd348f23093e9eb75227e5c8c35c73d6b6db58"
+                     alt="">
+                <p class="p text-grayy capitalize">esami</p>
+            </div>
+            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
+                <img class="w-[40px] aspect-square p-[8px]"
+                     src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fstatic-00.iconduck.com%2Fassets.00%2Fdashboard-icon-2048x2048-4tsdcjxa.png&sp=1736950662Tf36f982ff7d74395b56885c3f8dd348f23093e9eb75227e5c8c35c73d6b6db58"
+                     alt="">
+                <p class="p text-grayy capitalize">eventi</p>
+            </div>
+            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
+                <img class="w-[40px] aspect-square p-[8px]"
+                     src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fstatic-00.iconduck.com%2Fassets.00%2Fdashboard-icon-2048x2048-4tsdcjxa.png&sp=1736950662Tf36f982ff7d74395b56885c3f8dd348f23093e9eb75227e5c8c35c73d6b6db58"
+                     alt="">
+                <p class="p text-grayy capitalize">tasks</p>
+            </div>
+            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
+                <img class="w-[40px] aspect-square p-[8px]"
+                     src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fstatic-00.iconduck.com%2Fassets.00%2Fdashboard-icon-2048x2048-4tsdcjxa.png&sp=1736950662Tf36f982ff7d74395b56885c3f8dd348f23093e9eb75227e5c8c35c73d6b6db58"
+                     alt="">
+                <p class="p text-grayy capitalize">tasse</p>
+            </div>
+        </div>
+
+        <div class="flex w-full h-auto justify-between mt-auto items-center"> <!-- Account Pill -->
+            <img class="w-[56px] h-[56px] rounded-full"
+                 src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fcaws.ws%2Fforum%2Fuploads%2Fmonthly_2023_03%2FRDT_20221203_1016348239991520157650811.jpg.32870a18855d1df8339b1de5dba1c090.jpg&sp=1736951929Tecc38c3ad5c1e33782996a13c501071da37a0ee2ffc409fdcb9542b609ad5297"
+                 alt="">
+
+            <div class="flex flex-col justify-center">
+                <span class="flex gap-3 items-center"> <p class="p text-blackk font-bold">Maxim Cognini</p> <img
+                            class="w-[20px] h-[20px]"
+                            src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F014%2F455%2F895%2Fnon_2x%2Fdown-arrow-icon-on-transparent-background-free-png.png&sp=1736952250T5a2b5f0adf620159db69b4a299b2a86cfe83cdea4a7a65f860ff11b1da3758e9"
+                            alt=""></span>
+                <p class="p text-grayy">Studente</p>
+            </div>
+
+            <img class="w-[30px] h-[30px]"
+                 src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fuser-images.githubusercontent.com%2F48891420%2F55279922-a70e4300-52ec-11e9-9b0c-893752ab791f.png&sp=1736952025T34486a691d9d54f00e61c53b919f4b65dfc1e6598aaf374472aef6e789d9d65c"
+                 alt="">
+        </div>
+    </div>
+{% endblock sidebar %}

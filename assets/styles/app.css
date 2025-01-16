@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    /* Palette */
+    --primary-color: #3469DF;
+    --secondary-color: #1AADD4;
+    --gray-color: #D3D5EE;
+    --bg-color: #ECF4FF;
+    --black-color: #46475A;
+    --white-color: #F8F9FF;
+}
+
+.heading-1{@apply text-[48px] font-bold capitalize text-[var(--black-color)];}
+.heading-2{@apply text-[32px] font-semibold capitalize;}
+.p{@apply text-[20px];}
+.shadows{box-shadow: 0px 4px 15px -1px rgba(52,105,223,0.1);}
+.text-primary{@apply text-[var(--primary-color)];}
+.text-secondary{@apply text-[var(--secondary-color)];}
+.text-grayy{@apply text-[var(--gray-color)];}
+.text-bg{@apply text-[var(--bg-color)];}
+.text-blackk{@apply text-[var(--black-color)];}
+.text-whitee{@apply text-[var(--white-color)];}
+.bg-primary{@apply bg-[var(--primary-color)];}
+.bg-secondary{@apply bg-[var(--secondary-color)];}
+.bg-grayy{@apply bg-[var(--gray-color)];}
+.bg-blackk{@apply bg-[var(--black-color)];}
+.bg-bg{@apply bg-[var(--bg-color)];}
+.bg-whitee{@apply bg-[var(--white-color)];}
