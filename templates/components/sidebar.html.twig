@@ -1,79 +1,59 @@
 {% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) %}
 
 {% block sidebar %}
-    <div class="flex h-[65px] bg-whitee flex-col p-[20px]  gap-[40px] rounded-[40px] shadows justify-start lg:min-w-[348px] lg:h-full">
+    <div class="lg:gap-8 flex justify-between items-center h-auto bg-whitee lg:flex-col p-[20px] lg:rounded-[40px] lg:shadows lg:justify-start lg:min-w-[348px] lg:h-full">
+
+        <img class="cursor-pointer lg:hidden w-[50px] aspect-square p-[8px]" src="{{ asset('icons/menu.svg') }}"></img> <!-- Hamburgher -->
         <!-- Side Panel -->
-        <div>
-            {{ source('@icons/logo.svg') }}
-        </div>
+        <img class="lg:w-auto w-[250px]" src="{{ asset('icons/logo.svg') }}" alt="Logo">
         <!-- Logo -->
 
-        <div class="flex flex-col gap-[40px] w-full h-auto "> <!-- Menù -->
+
+        <div class="flex-col gap-[30px] w-full h-auto hidden lg:flex"> <!-- Menù -->
             <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <!--
-                <img class="w-[40px] aspect-square p-[8px]"
-                     src=""
-                     alt="">
-                -->
-                <div class="w-[40px] aspect-square p-[8px]">
-                    {{ source('@icons/dashboard.svg') }}
-                </div>
-                <p class="p text-grayy capitalize">Dashboard</p>
+                <img class="w-[40px] aspect-square" src="{{ asset('icons/dashboard.svg') }}" alt="Logo">
+                <p class="p text-gra    y capitalize">Dashboard</p>
             </div>
             <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <div class="w-[40px] aspect-square p-[8px]">
-                    {{ source('@icons/book-open.svg') }}
-                </div>
+                <img class="w-[40px] aspect-square" src="{{ asset('icons/book-open.svg') }}" alt="Logo">
                 <p class="p text-grayy capitalize">corsi</p>
             </div>
             <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <div class="w-[40px] aspect-square p-[8px]">
-                    {{ source('@icons/university.svg') }}
-                </div>
+                <img class="w-[40px] aspect-square" src="{{ asset('icons/university.svg') }}" alt="Logo">
                 <p class="p text-grayy capitalize">voti</p>
             </div>
             <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <div class="w-[40px] aspect-square p-[8px]">
-                    {{ source('@icons/pencil.svg') }}
-                </div>
+                <img class="w-[40px] aspect-square" src="{{ asset('icons/pencil.svg') }}" alt="Logo">
                 <p class="p text-grayy capitalize">esami</p>
             </div>
             <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <div class="w-[40px] aspect-square p-[8px]">
-                    {{ source('@icons/news.svg') }}
-                </div>
+                <img class="w-[40px] aspect-square" src="{{ asset('icons/news.svg') }}" alt="Logo">
                 <p class="p text-grayy capitalize">eventi</p>
             </div>
             <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <div class="w-[40px] aspect-square p-[8px]">
-                    {{ source('@icons/task-done.svg') }}
-                </div>
+                <img class="w-[40px] aspect-square" src="{{ asset('icons/task-done.svg') }}" alt="Logo">
                 <p class="p text-grayy capitalize">tasks</p>
             </div>
             <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <div class="w-[40px] aspect-square p-[8px]">
-                    {{ source('@icons/tax-yijiao-line.svg') }}
-                </div>
+                <img class="w-[40px] aspect-square" src="{{ asset('icons/tax-yijiao-line.svg') }}" alt="Logo">
                 <p class="p text-grayy capitalize">tasse</p>
             </div>
         </div>
 
-        <div class="flex w-full h-auto justify-between mt-auto items-center"> <!-- Account Pill -->
-            <img class="w-[56px] h-[56px] rounded-full"
+        <div class="hidden lg:flex shrink-0 lg:w-full gap-5 h-auto justify-between lg:mt-auto items-center"> <!-- Account Pill -->
+            <img class="h-[53px] aspect-square object-contain rounded-full"
                  src="{{ asset('imgs/profile.jpeg') }}"
                  alt="">
 
-            <div class="flex flex-col justify-center">
-                <span class="flex gap-3 items-center"> <p class="p text-blackk font-bold">Maxim Cognini</p> <img
+            <div class=" flex flex-col justify-center">
+                <span class="flex lg:gap-0 gap-3 items-center"> <p class="p text-blackk font-bold text-nowrap">Maxim Cognini</p> <img
                             class="w-[20px] h-[20px]"
                             src="{{ asset('down-arrow-5.svg') }}"
                             alt=""></span>
                 <p class="p text-grayy">Studente</p>
             </div>
-
-            <div class="w-[30px] h-[30px]">
-                {{ source('@icons/notifications-active.svg') }}
-            </div>
+            
+            <img class="hidden lg:flex w-[40px] h-[40px]" src="{{ asset('icons/notifications-active.svg') }}" alt="Logo">
         </div>
     </div>
 {% endblock sidebar %}
