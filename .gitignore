@@ -28,3 +28,4 @@
 
 .env*
 
+config/packages/web_profiler.yaml
