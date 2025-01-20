@@ -1,43 +1,110 @@
-{% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) | capitalize %}
+{% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) %}
 
 {% block sidebar %}
     <div class="lg:gap-8 flex justify-between items-center h-auto bg-whitee lg:flex-col p-[20px] lg:rounded-[40px] lg:shadows lg:justify-start lg:min-w-[348px] lg:h-full">
 
-        <img class="cursor-pointer lg:hidden w-[50px] aspect-square p-[8px]" src="{{ asset('icons/menu.svg') }}"></img> <!-- Hamburgher -->
+        <img class="cursor-pointer lg:hidden w-[50px] aspect-square p-[8px]" src="{{ asset('icons/menu.svg') }}"> <!-- Hamburgher -->
         <!-- Side Panel -->
-        <img class="lg:w-auto w-[250px]" src="{{ asset('icons/logo.svg') }}" alt="Logo">
+        <img class="lg:w-auto w-[250px]" src="{{ asset('imgs/logo.svg') }}" alt="Logo">
         <!-- Logo -->
 
+        {% set items = [
+            {
+                'name': 'dashboard',
+                'route': 'app_'~'dashboard',
+                'icon': {
+                    'path': 'dashboard.svg',
+                    'alt': 'icona dashboard'
+                }
+            },
+            {
+                'name': 'corsi',
+                'route': 'app_'~'corsi',
+                'icon': {
+                    'path': 'book-open.svg',
+                    'alt': 'icona corsi'
+                }
+            },
+            {
+                'name': 'voti',
+                'route': 'app_'~'voti',
+                'icon': {
+                    'path': 'university.svg',
+                    'alt': 'icona voti'
+                }
+            },
+            {
+                'name': 'esami',
+                'route': 'app_'~'esami',
+                'icon': {
+                    'path': 'pencil.svg',
+                    'alt': 'icona esami'
+                }
+            },
+            {
+                'name': 'eventi',
+                'route': 'app_'~'eventi',
+                'icon': {
+                    'path': 'news.svg',
+                    'alt': 'icona eventi'
+                }
+            },
+            {
+                'name': 'tasks',
+                'route': 'app_'~'tasks',
+                'icon': {
+                    'path': 'task-done.svg',
+                    'alt': 'icona tasks'
+                }
+            },
+            {
+                'name': 'tasse',
+                'route': 'app_'~'tasse',
+                'icon': {
+                    'path': 'tax-yijiao-line.svg',
+                    'alt': 'icona tasse'
+                }
+            },
+        ] %}
 
-        <div class="flex-col gap-[30px] w-full h-auto hidden lg:flex"> <!-- Menù -->
-            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <img class="w-[40px] aspect-square selected" src="{{ asset('icons/dashboard.svg') }}" alt="Logo">
-                <p class="p text-blackk capitalize ">dashboard</p>
-            </div>
-            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <img class="w-[40px] aspect-square" src="{{ asset('icons/book-open.svg') }}" alt="Logo">
-                <p class="p text-grayy capitalize">corsi</p>
-            </div>
-            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <img class="w-[40px] aspect-square" src="{{ asset('icons/university.svg') }}" alt="Logo">
-                <p class="p text-grayy capitalize">voti</p>
-            </div>
-            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <img class="w-[40px] aspect-square" src="{{ asset('icons/pencil.svg') }}" alt="Logo">
-                <p class="p text-grayy capitalize">esami</p>
-            </div>
-            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <img class="w-[40px] aspect-square" src="{{ asset('icons/news.svg') }}" alt="Logo">
-                <p class="p text-grayy capitalize">eventi</p>
-            </div>
-            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <img class="w-[40px] aspect-square" src="{{ asset('icons/task-done.svg') }}" alt="Logo">
-                <p class="p text-grayy capitalize">tasks</p>
-            </div>
-            <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <img class="w-[40px] aspect-square" src="{{ asset('icons/tax-yijiao-line.svg') }}" alt="Logo">
-                <p class="p text-grayy capitalize">tasse</p>
-            </div>
+        {% set config = {
+            'style': {
+                'item': 'flex w-full h-auto items-center gap-[18px] px-[10px]',
+                'icon': 'w-[40px] aspect-square',
+                'name': 'p text-grayy capitalize'
+            },
+            'selected_style': {
+                    'item': 'flex w-full h-auto items-center gap-[18px] px-[10px]',
+                    'icon': 'w-[40px] aspect-square',
+                    'name': 'p text-blackk capitalize'
+            }
+        } %}
+
+        <div class="flex-col gap-[30px] w-full h-auto hidden lg:flex">
+            {% for item in items %}
+                {% set icon = item['icon']['path'] %}
+                {% if item['name'] == route_name %}
+                    {% set icon = asset('icons/selected/' ~ icon) %}
+                    {% set style = config['selected_style'] %}
+                {% else %}
+                    {% set icon = asset('icons/' ~ icon) %}
+                    {% set style = config['style'] %}
+                {% endif %}
+
+                {% set options =
+                    {
+                        'url': path(item['route']),
+                        'style': style,
+                        'icon': {
+                            'path': icon,
+                            'alt': item['icon']['alt']
+                        }
+                    }
+                %}
+
+                {{ BuildItem(item['name'], options) | raw }}
+
+            {% endfor %}
         </div>
 
         <div class="hidden lg:flex shrink-0 lg:w-full gap-5 h-auto justify-between lg:mt-auto items-center"> <!-- Account Pill -->

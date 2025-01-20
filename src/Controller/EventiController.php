@@ -6,11 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class DefaultController extends AbstractController{
-    
-    #[Route('/', name: 'app_home')]
+final class EventiController extends AbstractController
+{
+    #[Route('/eventi', name: 'app_eventi')]
     public function index(): Response
     {
-        return $this->redirectToRoute('app_dashboard');
+        return $this->render('/pages/eventi/index.html.twig', [
+            'controller_name' => 'EventiController',
+        ]);
     }
 }
