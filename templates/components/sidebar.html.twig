@@ -1,4 +1,4 @@
-{% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) %}
+{% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) | capitalize %}
 
 {% block sidebar %}
     <div class="lg:gap-8 flex justify-between items-center h-auto bg-whitee lg:flex-col p-[20px] lg:rounded-[40px] lg:shadows lg:justify-start lg:min-w-[348px] lg:h-full">
@@ -11,8 +11,8 @@
 
         <div class="flex-col gap-[30px] w-full h-auto hidden lg:flex"> <!-- Menù -->
             <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
-                <img class="w-[40px] aspect-square" src="{{ asset('icons/dashboard.svg') }}" alt="Logo">
-                <p class="p text-gra    y capitalize">Dashboard</p>
+                <img class="w-[40px] aspect-square selected" src="{{ asset('icons/dashboard.svg') }}" alt="Logo">
+                <p class="p text-blackk capitalize ">dashboard</p>
             </div>
             <div class="flex w-full h-auto items-center gap-[18px] px-[10px]">
                 <img class="w-[40px] aspect-square" src="{{ asset('icons/book-open.svg') }}" alt="Logo">

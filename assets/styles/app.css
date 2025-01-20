@@ -28,3 +28,4 @@
 .bg-blackk{@apply bg-[var(--black-color)];}
 .bg-bg{@apply bg-[var(--bg-color)];}
 .bg-whitee{@apply bg-[var(--white-color)];}
+.selected > div{@apply text-blackk stroke-red-600 ;}
