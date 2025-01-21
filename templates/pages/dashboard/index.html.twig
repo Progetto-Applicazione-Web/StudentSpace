@@ -4,8 +4,8 @@
     <div class="overflow-x-hidden overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex lg:flex-row flex-col p-[20px] gap-[20px] rounded-[40px] shadows justify-start">
 
         <div class="flex gap-[10px] flex-col basis-3/3 overflow-x-hidden w-full">
-                <div class="border-2 br-bg w-full rounded-[30px] min-h-[250px] p-[20px]">
-                Qua ci va il grafico e non ho la più pallida idea di come si faccia
+                <div class="border-2 br-bg w-full rounded-[30px] min-h-[250px] p-[10px]">
+                    {{ render_chart(chart) }}
                 </div>
                 <div class="flex flex-col gap-2">
                 <p class="p text-grayy">In Arrivo</p>

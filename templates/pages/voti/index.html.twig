@@ -3,7 +3,9 @@
 {% block body_content %}
 	<div class="overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex flex-col p-[20px] gap-[20px] rounded-[40px] shadows justify-start">
 
-		<div class="border-2 br-bg p-5 rounded-[30px] h-[300px]"></div>
+		<div class="border-2 br-bg p-[10px] rounded-[30px] h-[300px]">
+			{{ render_chart(chart) }}
+		</div>
 		<p class="p text-grayy">Ultimi Voti</p>
 
 		<div class="flex gap-7 scrollbar-none flex-wrap overflow-scroll">
