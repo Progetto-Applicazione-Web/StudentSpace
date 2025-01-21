@@ -6,24 +6,31 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %} {{ route_name }} - StudentSpace {% endblock %}</title>
+
         <link rel="icon" href="{{ asset('imgs/icon.png')}}">
+
         {% block stylesheets %}
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
         {% endblock %}
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
-    <body class="flex bg-bg lg:gap-[20px] h-screen w-full flex-col lg:flex-row lg:p-[20px]">
+    <body class="flex bg-bg gap-[20px] lg:h-screen h-full w-full flex-col lg:flex-row lg:p-[20px]">
         {% block body %}
             {% include 'components/sidebar.html.twig' %}
-            <div class="w-full h-full bg-whitee flex flex-col p-[20px] gap-[40px] lg:rounded-[40px] lg:shadows justify-start">
-                <div class="heading-1">
-                    {{ route_name }}
+            <div class="overflow-x-hidden flex flex-col w-full gap-2">
+                <span class="flex items-center justify-between p text-primary">
+                <h1 class="heading-1 text-blackk lg:m-0 ml-5">{{route_name}}</h1>
+                </span>
+                <div class="overflow-x-hidden overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex lg:flex-row flex-col p-[20px] gap-[20px] rounded-[40px] shadows justify-start">
+                    {% block body_content %}
+                        Maxim Ti amo
+                    {% endblock %}
                 </div>
-                {% block body_content %}
-                    Maxim Ti amo
-                {% endblock %}
             </div>
         {% endblock %}
     </body>

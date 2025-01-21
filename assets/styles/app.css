@@ -2,14 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
+*{font-family: "Open Sans", serif;
+  box-sizing: border-box;}
+
 :root{
-    /* Palette */
-    --primary-color: #3469DF;
-    --secondary-color: #1AADD4;
-    --gray-color: #D3D5EE;
-    --bg-color: #ECF4FF;
-    --black-color: #46475A;
-    --white-color: #F8F9FF;
+  /* Palette */
+  --primary-color: #3469DF;
+  --secondary-color: #1AADD4;
+  --gray-color: #D3D5EE;
+  --bg-color: #ECF4FF;
+  --black-color: #46475A;
+  --white-color: #F8F9FF;
 }
 
 .heading-1{@apply text-[48px] font-bold capitalize text-[var(--black-color)];}
@@ -28,4 +34,18 @@
 .bg-blackk{@apply bg-[var(--black-color)];}
 .bg-bg{@apply bg-[var(--bg-color)];}
 .bg-whitee{@apply bg-[var(--white-color)];}
-.selected > div{@apply text-blackk stroke-red-600 ;}
+.br-primary{@apply border-[var(--primary-color)];}
+.br-secondary{@apply border-[var(--secondary-color)];}
+.br-grayy{@apply border-[var(--gray-color)];}
+.br-blackk{@apply border-[var(--black-color)];}
+.br-bg{@apply border-[var(--bg-color)];}
+.br-whitee{@apply border-[var(--white-color)];}
+
+
+
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/*body{background-color: red;}*/
