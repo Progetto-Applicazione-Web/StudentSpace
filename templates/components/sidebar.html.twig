@@ -1,7 +1,7 @@
 {% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) %}
 
 {% block sidebar %}
-    <div class="lg:gap-8 flex justify-between items-center h-auto bg-whitee lg:flex-col p-[20px] lg:rounded-[40px] lg:shadows lg:justify-start lg:min-w-[348px] lg:h-full">
+    <div class="lg:gap-8 flex justify-between items-center h-auto bg-whitee lg:flex-col p-[20px] lg:rounded-[40px] shadows  lg:justify-start lg:min-w-[348px] lg:h-full">
 
         <img class="cursor-pointer lg:hidden w-[50px] aspect-square p-[8px]" src="{{ asset('icons/menu.svg') }}"> <!-- Hamburgher -->
         <!-- Side Panel -->
@@ -69,12 +69,12 @@
 
         {% set config = {
             'style': {
-                'item': 'flex w-full h-auto items-center gap-[18px] px-[10px]',
+                'item': 'flex w-full h-auto hover:ml-5 transition-all items-center gap-[18px] px-[10px]',
                 'icon': 'w-[40px] aspect-square',
                 'name': 'p text-grayy capitalize'
             },
             'selected_style': {
-                    'item': 'flex w-full h-auto items-center gap-[18px] px-[10px]',
+                    'item': 'flex w-full  h-auto items-center gap-[18px] px-[10px]',
                     'icon': 'w-[40px] aspect-square',
                     'name': 'p text-blackk capitalize'
             }
