@@ -48,4 +48,9 @@
   scrollbar-width: none; /* Firefox */
 }
 
+
+.open{
+  display: flex !important;
+}
+
 /*body{background-color: red;}*/
