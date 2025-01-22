@@ -2,34 +2,46 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %} {{ route_name }} - StudentSpace {% endblock %}</title>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}
+				{{ route_name }}
+				- StudentSpace
+			{% endblock %}
+		</title>
 
-        <link rel="icon" href="{{ asset('imgs/icon.png')}}">
+		<link rel="icon" href="{{ asset('imgs/icon.png')}}">
 
-        {% block stylesheets %}
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-        {% endblock %}
+        
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+		{% block stylesheets %}
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+		{% endblock %}
+
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+	</head>
+	<body class="flex bg-bg gap-[20px] lg:h-screen h-full w-full flex-col lg:flex-row lg:p-[20px]">
+		{% block body %}
+			{% include 'components/sidebar.html.twig' %}
+			<div class="overflow-x-hidden flex flex-col w-full gap-2">
+				<span class="flex items-center justify-between p text-primary">
+					<h1 class="heading-1 text-blackk lg:m-0 ml-5">{{route_name}}</h1>
+				</span>
+				{% block body_content %}{% endblock %}
+			</div>
+		{% endblock %}
+
+        {% block javascripts_custom %}
+            <script src="{{ asset("scripts/openMenu.js") }}"></script>
         {% endblock %}
-    </head>
-    <body class="flex bg-bg gap-[20px] lg:h-screen h-full w-full flex-col lg:flex-row lg:p-[20px]">
-        {% block body %}
-            {% include 'components/sidebar.html.twig' %}
-            <div class="overflow-x-hidden flex flex-col w-full gap-2">
-                <span class="flex items-center justify-between p text-primary">
-                <h1 class="heading-1 text-blackk lg:m-0 ml-5">{{route_name}}</h1>
-                </span>
-                {% block body_content %}
-                        
-                {% endblock %}
-            </div>
-        {% endblock %}
-    </body>
+        
+	</body>
 </html>
