@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ESSE3;
+namespace App\Esse3;
 
 enum Endpoint: string
 {
