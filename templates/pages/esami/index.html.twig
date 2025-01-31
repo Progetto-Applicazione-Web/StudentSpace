@@ -3,187 +3,46 @@
 {% block body_content %}
 	<div class="flex-col-reverse overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex lg:flex-row p-[20px] gap-[20px] rounded-[40px] shadows justify-start">
 
-		<div
-			class="flex flex-col basis-2/6 bg-transparent gap-4 ">
+		<div class="flex flex-col basis-2/6 bg-transparent gap-4 ">
 			<!-- Superati -->
 			<p class="p text-grayy">Superati</p>
 			<div class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p ">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p ">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p ">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p ">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p ">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p ">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
-				<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-					<h2 class="heading-2">Programmazione</h2>
-					<h2 class="p ">12 CFU</h2>
-					<h2 class="heading-2">30</h2>
-				</div>
+				{% for corso in app.user.studente.corsi %}
+					{% if corso.isCompletato %}
+						{% for esame in corso.esami %}
+							{% if esame.isAccettato %}
+								<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
+									<h2 class="heading-2">{{ corso.nome | title }} </h2>
+									<h2 class="p">{{ corso.cfu }} CFU</h2>
+									<h2 class="heading-2">{{ esame.voto == "IDO"? "Idoneo" : esame.voto }}</h2>
+								</div>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				{% endfor %}
 			</div>
-
 		</div>
 
-		<div
-			class="flex flex-col basis-5/6 bg-transparent gap-4">
+		<div class="flex flex-col basis-5/6 bg-transparent gap-4">
 			<!-- Da Fare -->
 			<p class="p text-grayy">Da Fare</p>
 			<div class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
-
-				<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
-					<h2 class="heading-2">Algoritmi e Strutture Dati</h2>
-					<h2 class="p text-grayy">12 CFU</h2>
-					<span class="flex gap-4">
-						<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
-						<button class="p text-secondary">Dettagli</button>
-					</span>
-				</div>
-
-				<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
-					<h2 class="heading-2">Algoritmi e Strutture Dati</h2>
-					<h2 class="p text-grayy">12 CFU</h2>
-					<span class="flex gap-4">
-						<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
-						<button class="p text-secondary">Dettagli</button>
-					</span>
-				</div>
-
-				<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
-					<h2 class="heading-2">Algoritmi e Strutture Dati</h2>
-					<h2 class="p text-grayy">12 CFU</h2>
-					<span class="flex gap-4">
-						<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
-						<button class="p text-secondary">Dettagli</button>
-					</span>
-				</div>
-
-				<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
-					<h2 class="heading-2">Algoritmi e Strutture Dati</h2>
-					<h2 class="p text-grayy">12 CFU</h2>
-					<span class="flex gap-4">
-						<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
-						<button class="p text-secondary">Dettagli</button>
-					</span>
-				</div>
-
-				<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
-					<h2 class="heading-2">Algoritmi e Strutture Dati</h2>
-					<h2 class="p text-grayy">12 CFU</h2>
-					<span class="flex gap-4">
-						<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
-						<button class="p text-secondary">Dettagli</button>
-					</span>
-				</div>
-
-				<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
-					<h2 class="heading-2">Algoritmi e Strutture Dati</h2>
-					<h2 class="p text-grayy">12 CFU</h2>
-					<span class="flex gap-4">
-						<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
-						<button class="p text-secondary">Dettagli</button>
-					</span>
-				</div>
-
-				<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
-					<h2 class="heading-2">Algoritmi e Strutture Dati</h2>
-					<h2 class="p text-grayy">12 CFU</h2>
-					<span class="flex gap-4">
-						<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
-						<button class="p text-secondary">Dettagli</button>
-					</span>
-				</div>
-
-				<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
-					<h2 class="heading-2">Algoritmi e Strutture Dati</h2>
-					<h2 class="p text-grayy">12 CFU</h2>
-					<span class="flex gap-4">
-						<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
-						<button class="p text-secondary">Dettagli</button>
-					</span>
-				</div>
-
-				<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
-					<h2 class="heading-2">Algoritmi e Strutture Dati</h2>
-					<h2 class="p text-grayy">12 CFU</h2>
-					<span class="flex gap-4">
-						<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
-						<button class="p text-secondary">Dettagli</button>
-					</span>
-				</div>
-
-				<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
-					<h2 class="heading-2">Algoritmi e Strutture Dati</h2>
-					<h2 class="p text-grayy">12 CFU</h2>
-					<span class="flex gap-4">
-						<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
-						<button class="p text-secondary">Dettagli</button>
-					</span>
-				</div>
-
-
+				{% for corso in app.user.studente.corsi | sort((a, b) => b.annoSvolgimento <=> a.annoSvolgimento) %}
+					{% if not corso.isCompletato %}
+						<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
+							<h2 class="heading-2">{{ corso.nome | title }} </h2>
+							<h2 class="p text-grayy">{{ corso.cfu }} CFU</h2>
+							<span class="flex gap-4">
+								<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
+								<button class="p text-secondary">Dettagli</button>
+							</span>
+						</div>
+					{% endif %}
+				{% endfor %}
 			</div>
 		</div>
 
-		<div
-			class=" flex flex-col gap-4 basis-3/6 bg-transparent  ">
+		<div class=" flex flex-col gap-4 basis-3/6 bg-transparent  ">
 			<!-- Programmati -->
 			<p class="p text-grayy">Programmati</p>
 			<div id="calendar" class="bg-bg rounded-[30px] h-full p-5"></div>
@@ -194,39 +53,39 @@
 {% endblock %}
 
 {% block javascripts_custom %}
-    {{ parent() }}
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-    <script>
+	{{ parent() }}
+	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+	<script>
 
-                const initializeCalendar = () => {
-                const calendarEl = document.getElementById('calendar');
-                if (calendarEl) {
-                    if (calendarEl._fullCalendar) {
-                        calendarEl._fullCalendar.destroy(); // Distrugge eventuali istanze precedenti
-                    }
+		const initializeCalendar = () => {
+			const calendarEl = document.getElementById('calendar');
+			if (calendarEl) {
+				if (calendarEl._fullCalendar) {
+					calendarEl._fullCalendar.destroy(); // Distrugge eventuali istanze precedenti
+				}
 
-                    const calendar = new FullCalendar.Calendar(calendarEl, {
-                        initialView: 'dayGridMonth',
-                        headerToolbar: {
-                            start: 'title',
-                            center: '',
-                            end: 'prev,next',
-                        },
-                        height: 'full', // Ridimensiona automaticamente in base al contenitore
-                    });
+				const calendar = new FullCalendar.Calendar(calendarEl, {
+					initialView: 'dayGridMonth',
+					headerToolbar: {
+						start: 'title',
+						center: '',
+						end: 'prev,next',
+					},
+					height: 'full', // Ridimensiona automaticamente in base al contenitore
+				});
 
-                    calendar.render();
-                    calendarEl._fullCalendar = calendar; // Salva l'istanza per futuri utilizzi
-                }
-            };
+				calendar.render();
+				calendarEl._fullCalendar = calendar; // Salva l'istanza per futuri utilizzi
+			}
+		};
 
-// Inizializza il calendario quando il contenuto è caricato
-document.addEventListener('DOMContentLoaded', initializeCalendar);
+		// Inizializza il calendario quando il contenuto è caricato
+		document.addEventListener('DOMContentLoaded', initializeCalendar);
 
-// Gestisce ricariche o cambiamenti di route
-document.addEventListener('turbo:load', initializeCalendar);
-document.addEventListener('routeChangeComplete', initializeCalendar);
+		// Gestisce ricariche o cambiamenti di route
+		document.addEventListener('turbo:load', initializeCalendar);
+		document.addEventListener('routeChangeComplete', initializeCalendar);
 
 
-    </script>
+	</script>
 {% endblock %}

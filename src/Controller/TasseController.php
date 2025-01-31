@@ -11,6 +11,11 @@ class TasseController extends AbstractController
     #[Route('/tasse', name: 'app_tasse')]
     public function index(): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED')) return $this->redirectToRoute('app_login');
+
+        $tasse = $this->getUser()->getStudente()->getTasse();
+
+
         return $this->render('pages/tasse/index.html.twig', [
             'controller_name' => 'TasseController',
         ]);

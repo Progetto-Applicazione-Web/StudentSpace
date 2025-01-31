@@ -2,7 +2,7 @@
 
 {% block sidebar %}
     
-    <div id="sidebar" class="lg:gap-8 gap-5 flex justify-between items-center h-auto bg-whitee flex-col p-[20px] lg:rounded-[40px] shadows  lg:justify-start lg:max-w-[348px] lg:h-full">
+    <div id="sidebar" class="lg:gap-8 gap-5 flex justify-between items-center h-auto bg-whitee flex-col p-[20px] lg:rounded-[40px] shadows  lg:justify-start lg:max-w-[348px] lg:h-full select-none">
 
         <div class="flex w-full justify-between">
             <img id="menuButtonn" class="cursor-pointer lg:hidden w-[50px] aspect-square p-[8px]" src="{{ asset('icons/menu.svg') }}"> <!-- Hamburgher -->
@@ -114,11 +114,11 @@
                  alt="">
 
             <div class=" flex flex-col justify-center">
-                <span class="flex lg:gap-0 gap-3 items-center"> <p class="p text-blackk font-bold text-nowrap">Maxim Cognini</p> <img
+                <span class="flex lg:gap-0 gap-3 items-center"> <p class="p text-blackk font-bold text-nowrap">{{ (app.user.studente.nome | capitalize)~ " " ~ (app.user.studente.cognome | capitalize) }}</p> <img
                             class="w-[20px] h-[20px]"
                             src="{{ asset('down-arrow-5.svg') }}"
                             alt=""></span>
-                <p class="p text-grayy">Studente</p>
+                <p class="p text-grayy">{{ app.user.roles | last | capitalize }}</p>
             </div>
             
             <img class="hidden lg:flex w-[40px] h-[40px]" src="{{ asset('icons/notifications-active.svg') }}" alt="Logo">

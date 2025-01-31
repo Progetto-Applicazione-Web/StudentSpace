@@ -14,56 +14,77 @@ class Tassa
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $aaId = null;
+    #[ORM\ManyToOne(inversedBy: 'tasse')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Studente $studente = null;
 
-    #[ORM\Column]
-    private ?int $fattId = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private ?string $importo = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $dataScadenza = null;
+
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $dataPagamento = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $descrizione = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $data_emissione = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $data_pagamento = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $scadenza = null;
+    #[ORM\Column(nullable: true)]
+    private ?int $fattId = null;
 
     #[ORM\Column]
-    private ?float $importo = null;
-
-    #[ORM\ManyToOne(inversedBy: 'tasse')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Studente $id_studente = null;
+    private ?bool $pagato = false;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAaId(): ?int
+    public function getStudente(): ?Studente
     {
-        return $this->aaId;
+        return $this->studente;
     }
 
-    public function setAaId(int $aaId): static
+    public function setStudente(?Studente $studente): static
     {
-        $this->aaId = $aaId;
+        $this->studente = $studente;
 
         return $this;
     }
 
-    public function getFattId(): ?int
+    public function getImporto(): ?string
     {
-        return $this->fattId;
+        return $this->importo;
     }
 
-    public function setFattId(int $fattId): static
+    public function setImporto(string $importo): static
     {
-        $this->fattId = $fattId;
+        $this->importo = $importo;
+
+        return $this;
+    }
+
+    public function getDataScadenza(): ?string
+    {
+        return $this->dataScadenza;
+    }
+
+    public function setDataScadenza(string $dataScadenza): static
+    {
+        $this->dataScadenza = $dataScadenza;
+
+        return $this;
+    }
+
+    public function getDataPagamento(): ?string
+    {
+        return $this->dataPagamento;
+    }
+
+    public function setDataPagamento(?string $dataPagamento): static
+    {
+        $this->dataPagamento = $dataPagamento;
 
         return $this;
     }
@@ -73,69 +94,38 @@ class Tassa
         return $this->descrizione;
     }
 
-    public function setDescrizione(string $descrizione): static
+    public function setDescrizione(?string $descrizione): static
     {
         $this->descrizione = $descrizione;
 
         return $this;
     }
 
-    public function getDataEmissione(): ?\DateTimeInterface
+    public function getFattId(): ?int
     {
-        return $this->data_emissione;
+        return $this->fattId;
     }
 
-    public function setDataEmissione(\DateTimeInterface $data_emissione): static
+    public function setFattId(?int $fattId): static
     {
-        $this->data_emissione = $data_emissione;
+        $this->fattId = $fattId;
 
         return $this;
     }
 
-    public function getDataPagamento(): ?\DateTimeInterface
+    public function hasFattId(): bool
     {
-        return $this->data_pagamento;
+        return isset($this->fattId);
     }
 
-    public function setDataPagamento(?\DateTimeInterface $data_pagamento): static
+    public function isPagato(): ?bool
     {
-        $this->data_pagamento = $data_pagamento;
-
-        return $this;
+        return $this->pagato;
     }
 
-    public function getScadenza(): ?\DateTimeInterface
+    public function setPagato(bool $pagato): static
     {
-        return $this->scadenza;
-    }
-
-    public function setScadenza(\DateTimeInterface $scadenza): static
-    {
-        $this->scadenza = $scadenza;
-
-        return $this;
-    }
-
-    public function getImporto(): ?float
-    {
-        return $this->importo;
-    }
-
-    public function setImporto(float $importo): static
-    {
-        $this->importo = $importo;
-
-        return $this;
-    }
-
-    public function getIdStudente(): ?Studente
-    {
-        return $this->id_studente;
-    }
-
-    public function setIdStudente(?Studente $id_studente): static
-    {
-        $this->id_studente = $id_studente;
+        $this->pagato = $pagato;
 
         return $this;
     }

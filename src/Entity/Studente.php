@@ -16,91 +16,52 @@ class Studente
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $nome = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $cognome = null;
-
-    #[ORM\Column(length: 32)]
-    private ?string $username = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $matricola = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $email = null;
+    #[ORM\Column(nullable: true)]
+    private ?int $stuId = null;
 
-    /**
-     * @var Collection<int, TodoList>
-     */
-    #[ORM\OneToMany(targetEntity: TodoList::class, mappedBy: 'id_studente')]
-    private Collection $todoLists;
+    #[ORM\Column(nullable: true)]
+    private ?int $matId = null;
 
-    /**
-     * @var Collection<int, Notifica>
-     */
-    #[ORM\OneToMany(targetEntity: Notifica::class, mappedBy: 'id_studente', orphanRemoval: true)]
-    private Collection $notifiche;
+    #[ORM\Column(length: 255)]
+    private ?string $nome = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $cognome = null;
+
+    #[ORM\OneToOne(inversedBy: 'studente', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Utente $user = null;
 
     /**
      * @var Collection<int, Tassa>
      */
-    #[ORM\OneToMany(targetEntity: Tassa::class, mappedBy: 'id_studente', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Tassa::class, mappedBy: 'studente')]
     private Collection $tasse;
+
+    /**
+     * @var Collection<int, Esame>
+     */
+    #[ORM\OneToMany(targetEntity: Esame::class, mappedBy: 'studente')]
+    private Collection $esami;
+
+    /**
+     * @var Collection<int, Corso>
+     */
+    #[ORM\OneToMany(targetEntity: Corso::class, mappedBy: 'studente')]
+    private Collection $corsi;
 
     public function __construct()
     {
-        $this->todoLists = new ArrayCollection();
-        $this->notifiche = new ArrayCollection();
         $this->tasse = new ArrayCollection();
+        $this->esami = new ArrayCollection();
+        $this->corsi = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    public function getNome(): ?string
-    {
-        return $this->nome;
-    }
-
-    public function setNome(?string $nome): static
-    {
-        $this->nome = $nome;
-
-        return $this;
-    }
-
-    public function getCognome(): ?string
-    {
-        return $this->cognome;
-    }
-
-    public function setCognome(?string $cognome): static
-    {
-        $this->cognome = $cognome;
-
-        return $this;
-    }
-
-    public function getUsername(): ?string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username): static
-    {
-        $this->username = $username;
-
-        return $this;
     }
 
     public function getMatricola(): ?string
@@ -115,74 +76,38 @@ class Studente
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getNome(): ?string
     {
-        return $this->email;
+        return $this->nome;
     }
 
-    public function setEmail(?string $email): static
+    public function setNome(string $nome): static
     {
-        $this->email = $email;
+        $this->nome = $nome;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, TodoList>
-     */
-    public function getTodoLists(): Collection
+    public function getCognome(): ?string
     {
-        return $this->todoLists;
+        return $this->cognome;
     }
 
-    public function addTodoList(TodoList $todoList): static
+    public function setCognome(string $cognome): static
     {
-        if (!$this->todoLists->contains($todoList)) {
-            $this->todoLists->add($todoList);
-            $todoList->setIdStudente($this);
-        }
+        $this->cognome = $cognome;
 
         return $this;
     }
 
-    public function removeTodoList(TodoList $todoList): static
+    public function getUser(): ?Utente
     {
-        if ($this->todoLists->removeElement($todoList)) {
-            // set the owning side to null (unless already changed)
-            if ($todoList->getIdStudente() === $this) {
-                $todoList->setIdStudente(null);
-            }
-        }
-
-        return $this;
+        return $this->user;
     }
 
-    /**
-     * @return Collection<int, Notifica>
-     */
-    public function getNotifiche(): Collection
+    public function setUser(Utente $user): static
     {
-        return $this->notifiche;
-    }
-
-    public function addNotifica(Notifica $notifica): static
-    {
-        if (!$this->notifiche->contains($notifica)) {
-            $this->notifiche->add($notifica);
-            $notifica->setIdStudente($this);
-        }
-
-        return $this;
-    }
-
-    public function removeNotifica(Notifica $notifica): static
-    {
-        if ($this->notifiche->removeElement($notifica)) {
-            // set the owning side to null (unless already changed)
-            if ($notifica->getIdStudente() === $this) {
-                $notifica->setIdStudente(null);
-            }
-        }
+        $this->user = $user;
 
         return $this;
     }
@@ -195,22 +120,82 @@ class Studente
         return $this->tasse;
     }
 
-    public function addTassa(Tassa $tassa): static
+    public function addTasse(Tassa $tasse): static
     {
-        if (!$this->tasse->contains($tassa)) {
-            $this->tasse->add($tassa);
-            $tassa->setIdStudente($this);
+        if (!$this->tasse->contains($tasse)) {
+            $this->tasse->add($tasse);
+            $tasse->setStudente($this);
         }
 
         return $this;
     }
 
-    public function removeTassa(Tassa $tassa): static
+    public function removeTasse(Tassa $tasse): static
     {
-        if ($this->tasse->removeElement($tassa)) {
+        if ($this->tasse->removeElement($tasse)) {
             // set the owning side to null (unless already changed)
-            if ($tassa->getIdStudente() === $this) {
-                $tassa->setIdStudente(null);
+            if ($tasse->getStudente() === $this) {
+                $tasse->setStudente(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Esame>
+     */
+    public function getEsami(): Collection
+    {
+        return $this->esami;
+    }
+
+    public function addEsami(Esame $esami): static
+    {
+        if (!$this->esami->contains($esami)) {
+            $this->esami->add($esami);
+            $esami->setStudenteId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEsami(Esame $esami): static
+    {
+        if ($this->esami->removeElement($esami)) {
+            // set the owning side to null (unless already changed)
+            if ($esami->getStudenteId() === $this) {
+                $esami->setStudenteId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Corso>
+     */
+    public function getCorsi(): Collection
+    {
+        return $this->corsi;
+    }
+
+    public function addCorsi(Corso $corsi): static
+    {
+        if (!$this->corsi->contains($corsi)) {
+            $this->corsi->add($corsi);
+            $corsi->setStudenteId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCorsi(Corso $corsi): static
+    {
+        if ($this->corsi->removeElement($corsi)) {
+            // set the owning side to null (unless already changed)
+            if ($corsi->getStudenteId() === $this) {
+                $corsi->setStudenteId(null);
             }
         }
 

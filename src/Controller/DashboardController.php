@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Corso;
+use App\Entity\Studente;
+use App\Repository\CorsoRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,24 +15,32 @@ use Symfony\UX\Chartjs\Model\Chart;
 
 class DashboardController extends AbstractController
 {
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager,)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/dashboard', name: 'app_dashboard')]
     public function index(ChartBuilderInterface $chartBuilder): Response
     {
-        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
+        if (!$this->isGranted('IS_AUTHENTICATED')) return $this->redirectToRoute('app_login');
 
+        $votiPerMedia = $this->entityManager->getRepository(Studente::class)->getVotiPerMedia();
+
+        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
         $chart->setData([
-            'labels' => ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
+            'labels' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
             'datasets' => [
                 [
                     'backgroundColor' => 'rgba(52, 105, 223, 0.2)', // Area sotto la linea
                     'borderColor' => '#3469DF', // Colore della linea
-                    'data' => [18, 22, 25, 24, 28, 30, 31, 20, 22, 25, 24, 28, 30, 31], // Dati compresi tra 18 e 31
+                    'data' => $votiPerMedia, // Dati compresi tra 18 e 31
                     'fill' => true, // Riempi sotto la linea
                 ],
             ],
-        ]);
-
-        $chart->setOptions([
+        ])->setOptions([
             'plugins' => [
                 'legend' => [
                     'display' => false, // Nasconde la label e il rettangolino

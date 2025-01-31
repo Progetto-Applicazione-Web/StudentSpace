@@ -3,41 +3,34 @@
 namespace App\Repository;
 
 use App\Entity\Corso;
+use App\Entity\Studente;
+use App\Entity\Utente;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bundle\SecurityBundle\Security;
 
 /**
  * @extends ServiceEntityRepository<Corso>
  */
 class CorsoRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private Security $security;
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(ManagerRegistry $registry, Security $security, EntityManagerInterface $entityManager)
     {
         parent::__construct($registry, Corso::class);
+
+        $this->security = $security;
+        $this->entityManager = $entityManager;
     }
 
-    //    /**
-    //     * @return Corso[] Returns an array of Corso objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function getCorsoById(int $id)
+    {
+        $studente = $this->entityManager->getRepository(Utente::class)->getUtenteByUsername($this->security->getUser()->getUserIdentifier())->getStudente();
+        if ($studente == null ) return null;
 
-    //    public function findOneBySomeField($value): ?Corso
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        return $this->findOneBy(['id' => $id, 'studente' => $studente]);
+    }
 }

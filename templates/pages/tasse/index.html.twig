@@ -2,111 +2,21 @@
 
 {% block body_content %}
 	<div class="flex-wrap items-start lg:flex-row flex-col overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex p-[20px] gap-[20px] rounded-[40px] shadows  justify-start">
-
-		<div
-			class="flex-col flex gap-5 bg-bg rounded-[30px] h-auto p-[20px] w-full lg:w-[450px]">
-			<!-- Card Paga -->
-
-			<span class="flex items-center justify-between">
-				<h2 class="heading-2 text-blackk !font-black ">€156,00</h2>
-				<p class="p text-grayy ">08/10/2024</p>
+		{% set tasse = app.user.studente.tasse %}
+		{% for tassa in tasse %}
+			<div class="flex-col flex gap-5 bg-bg rounded-[30px] h-auto p-[20px] w-full lg:w-[450px]">
+				<!-- Card Paga -->
+				<span class="flex items-center justify-between">
+				<h2 class="heading-2 text-blackk !font-black ">€ {{ tassa.importo }}</h2>
+				<p class="p text-grayy ">{{ tassa.dataScadenza }}</p>
 			</span>
-			<p class="p text-blackk">Matricola 123498 - Corso di Laurea - INFORMATICA PER LA COMUNICAZIONE DIGITALE - Rata: I rata ​
-				          Tassa di iscrizione con bollo A.A. 2024/2025 ​</p>
-
-			<button class=" bg-primary px-[20px] py-[15px] hover:brightness-110 active:brightness-75 transition-all w-full text-whitee p font-black rounded-[20px]">Paga</button>
-
-		</div>
-
-		<div
-			class="flex-col flex gap-5 bg-bg rounded-[30px] h-auto p-[20px] w-full lg:w-[450px]">
-			<!-- Card Paga -->
-
-			<span class="flex items-center justify-between">
-				<h2 class="heading-2 text-blackk !font-black ">€156,00</h2>
-				<p class="p text-grayy ">08/10/2024</p>
-			</span>
-			<p class="p text-blackk">Matricola 123498 - Corso di Laurea - INFORMATICA PER LA COMUNICAZIONE DIGITALE - Rata: I rata ​
-				          Tassa di iscrizione con bollo A.A. 2024/2025 ​</p>
-
-			<button class="bg-primary px-[20px] py-[15px] hover:brightness-110 active:brightness-75 transition-all w-full text-whitee p font-black rounded-[20px]">Paga</button>
-
-		</div>
-
-		<div
-			class="flex-col flex gap-5 bg-bg rounded-[30px] h-auto p-[20px] w-full lg:w-[450px]">
-			<!-- Card Paga -->
-
-			<span class="flex items-center justify-between">
-				<h2 class="heading-2 text-blackk !font-black ">€156,00</h2>
-				<p class="p text-grayy ">08/10/2024</p>
-			</span>
-			<p class="p text-blackk">Matricola 123498 - Corso di Laurea - INFORMATICA PER LA COMUNICAZIONE DIGITALE - Rata: I rata ​
-				          Tassa di iscrizione con bollo A.A. 2024/2025 ​</p>
-
-			<button class="bg-primary px-[20px] py-[15px] hover:brightness-110 active:brightness-75 transition-all w-full text-whitee p font-black rounded-[20px]">Paga</button>
-
-		</div>
-
-		<div
-			class="flex-col flex gap-5 bg-bg rounded-[30px] h-auto p-[20px] w-full lg:w-[450px]">
-			<!-- Card Paga -->
-
-			<span class="flex items-center justify-between">
-				<h2 class="heading-2 text-blackk !font-black ">€156,00</h2>
-				<p class="p text-grayy ">08/10/2024</p>
-			</span>
-			<p class="p text-blackk">Matricola 123498 - Corso di Laurea - INFORMATICA PER LA COMUNICAZIONE DIGITALE - Rata: I rata ​
-				          Tassa di iscrizione con bollo A.A. 2024/2025 ​</p>
-
-			<button class="bg-primary px-[20px] py-[15px] hover:brightness-110 active:brightness-75 transition-all w-full text-whitee p font-black rounded-[20px]">Paga</button>
-
-		</div>
-
-		<div
-			class="flex-col flex gap-5 bg-bg rounded-[30px] h-auto p-[20px] w-full lg:w-[450px]">
-			<!-- Card Paga -->
-
-			<span class="flex items-center justify-between">
-				<h2 class="heading-2 text-blackk !font-black ">€156,00</h2>
-				<p class="p text-grayy ">08/10/2024</p>
-			</span>
-			<p class="p text-blackk">Matricola 123498 - Corso di Laurea - INFORMATICA PER LA COMUNICAZIONE DIGITALE - Rata: I rata ​
-				          Tassa di iscrizione con bollo A.A. 2024/2025 ​</p>
-
-			<button class="bg-primary px-[20px] py-[15px] hover:brightness-110 active:brightness-75 transition-all w-full text-whitee p font-black rounded-[20px]">Paga</button>
-
-		</div>
-
-		<div
-			class="flex-col flex gap-5 bg-bg rounded-[30px] h-auto p-[20px] w-full lg:w-[450px]">
-			<!-- Card Paga -->
-
-			<span class="flex items-center justify-between">
-				<h2 class="heading-2 text-blackk !font-black ">€156,00</h2>
-				<p class="p text-grayy ">08/10/2024</p>
-			</span>
-			<p class="p text-blackk">Matricola 123498 - Corso di Laurea - INFORMATICA PER LA COMUNICAZIONE DIGITALE - Rata: I rata ​
-				          Tassa di iscrizione con bollo A.A. 2024/2025 ​</p>
-
-			<button class="bg-primary px-[20px] py-[15px] hover:brightness-110 active:brightness-75 transition-all w-full text-whitee p font-black rounded-[20px]">Paga</button>
-
-		</div>
-
-		<div
-			class="flex-col flex gap-5 bg-bg rounded-[30px] h-auto p-[20px] shrink-0 w-full lg:w-[450px]">
-			<!-- Card Paga -->
-
-			<span class="flex items-center justify-between">
-				<h2 class="heading-2 text-blackk !font-black ">€156,00</h2>
-				<p class="p text-grayy ">08/10/2024</p>
-			</span>
-			<p class="p text-blackk">Matricola 123498 - Corso di Laurea - INFORMATICA PER LA COMUNICAZIONE DIGITALE - Rata: I rata ​
-				          Tassa di iscrizione con bollo A.A. 2024/2025 ​</p>
-
-			<button class="bg-primary px-[20px] py-[15px] hover:brightness-110 active:brightness-75 transition-all w-full text-whitee p font-black rounded-[20px]">Paga</button>
-
-		</div>
-
+				<p class="p text-blackk">€ {{ tassa.descrizione }}</p>
+				{% if not tassa.hasFattId %}
+					<a class=" bg-primary px-[20px] py-[15px] hover:brightness-110 active:brightness-75 transition-all w-full text-whitee p font-black rounded-[20px]">Paga</a>
+				{% else %}
+					<a href="https://didattica.unicam.it/auth/studente/Tasse/FatturaDettaglio.do?fatt_id={{ tassa.fattId }}" class=" bg-primary px-[20px] py-[15px] hover:brightness-110 active:brightness-75 transition-all w-full text-whitee p font-black rounded-[20px]" target="_blank">Paga da Esse3</a>
+				{% endif %}
+			</div>
+		{% endfor %}
 	</div>
 {% endblock %}

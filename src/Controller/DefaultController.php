@@ -11,6 +11,7 @@ final class DefaultController extends AbstractController{
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED')) return $this->redirectToRoute('app_login');
         return $this->redirectToRoute('app_dashboard');
     }
 }

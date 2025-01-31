@@ -11,6 +11,8 @@ final class EventiController extends AbstractController
     #[Route('/eventi', name: 'app_eventi')]
     public function index(): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED')) return $this->redirectToRoute('app_login');
+
         return $this->render('/pages/eventi/index.html.twig', [
             'controller_name' => 'EventiController',
         ]);

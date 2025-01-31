@@ -2,18 +2,18 @@
 
 namespace App\Repository;
 
-use App\Entity\Tassa;
+use App\Entity\Esame;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Tassa>
+ * @extends ServiceEntityRepository<Esame>
  */
-class TassaRepository extends ServiceEntityRepository
+class EsameRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Tassa::class);
+        parent::__construct($registry, Esame::class);
     }
 
 }
