@@ -120,22 +120,22 @@ class Studente
         return $this->tasse;
     }
 
-    public function addTasse(Tassa $tasse): static
+    public function addTassa(Tassa $tassa): static
     {
-        if (!$this->tasse->contains($tasse)) {
-            $this->tasse->add($tasse);
-            $tasse->setStudente($this);
+        if (!$this->tasse->contains($tassa)) {
+            $this->tasse->add($tassa);
+            $tassa->setStudente($this);
         }
 
         return $this;
     }
 
-    public function removeTasse(Tassa $tasse): static
+    public function removeTassa(Tassa $tassa): static
     {
-        if ($this->tasse->removeElement($tasse)) {
+        if ($this->tasse->removeElement($tassa)) {
             // set the owning side to null (unless already changed)
-            if ($tasse->getStudente() === $this) {
-                $tasse->setStudente(null);
+            if ($tassa->getStudente() === $this) {
+                $tassa->setStudente(null);
             }
         }
 
@@ -150,25 +150,24 @@ class Studente
         return $this->esami;
     }
 
-    public function addEsami(Esame $esami): static
+    public function addEsame(Esame $esame): static
     {
-        if (!$this->esami->contains($esami)) {
-            $this->esami->add($esami);
-            $esami->setStudenteId($this);
+        if (!$this->esami->contains($esame)) {
+            $this->esami->add($esame);
+            $esame->setStudente($this);
         }
 
         return $this;
     }
 
-    public function removeEsami(Esame $esami): static
+    public function removeEsame(Esame $esame): static
     {
-        if ($this->esami->removeElement($esami)) {
+        if ($this->esami->removeElement($esame)) {
             // set the owning side to null (unless already changed)
-            if ($esami->getStudenteId() === $this) {
-                $esami->setStudenteId(null);
+            if ($esame->getStudente() === $this) {
+                $esame->setStudente(null);
             }
         }
-
         return $this;
     }
 
@@ -180,25 +179,23 @@ class Studente
         return $this->corsi;
     }
 
-    public function addCorsi(Corso $corsi): static
+    public function addCorso(Corso $corso): static
     {
-        if (!$this->corsi->contains($corsi)) {
-            $this->corsi->add($corsi);
-            $corsi->setStudenteId($this);
+        if (!$this->corsi->contains($corso)) {
+            $this->corsi->add($corso);
+            $corso->setStudente($this);
         }
-
         return $this;
     }
 
-    public function removeCorsi(Corso $corsi): static
+    public function removeCorso(Corso $corso): static
     {
-        if ($this->corsi->removeElement($corsi)) {
+        if ($this->corsi->removeElement($corso)) {
             // set the owning side to null (unless already changed)
-            if ($corsi->getStudenteId() === $this) {
-                $corsi->setStudenteId(null);
+            if ($corso->getStudente() === $this) {
+                $corso->setStudente(null);
             }
         }
-
         return $this;
     }
 }

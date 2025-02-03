@@ -54,7 +54,7 @@ class Corso
         return $this->id;
     }
 
-    public function getStudenteId(): ?Studente
+    public function getStudente(): ?Studente
     {
         return $this->studente;
     }
@@ -175,5 +175,20 @@ class Corso
         foreach ($esami as $esame) if ($esame->isAccettato()) return true;
 
         return false;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'studente' => '//TODO FIXARE', //$this->studente->toArray(),
+            'nome' => $this->nome,
+            'codice' => $this->codice,
+            'docente' => $this->docente,
+            'note' => $this->note,
+            'annoSvolgimento' => $this->annoSvolgimento,
+            'esami' => '//TODO FIXARE',//$this->esami->toArray(),
+            'cfu' => $this->cfu
+        ];
     }
 }
