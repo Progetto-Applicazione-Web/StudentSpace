@@ -5,21 +5,25 @@
 
 {% block body %}
     {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="bg-red-100 absolute top-0 left-0 text-center w-full flex justify-center items-center"><p class="p p-2 animate-shake font-bold text-red-500">{{ error.messageKey|trans(error.messageData, 'security') }}</p></div>
     {% endif %}
-    <div class="w-full h-screen bg-red-500">
-        <form class="w-full h-screen bg-red-500" action="{{ path('app_login') }}" method="post">
-            <label for="username">Email:</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" required>
+    <div class="bg-bg flex h-full w-full items-center justify-center">
+      <form class="rounded-[20px] bg-whitee flex flex-col px-10 py-4" action="{{ path('app_login') }}" method="post">
 
-    <form action="{{ path('app_login') }}" method="post">
-        <label class="bg-red-500" for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" required>
+        <img class="mb-6" src="{{ asset('imgs/logo.svg') }}" alt="">
 
-            <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+        <label class="p text-blackk mb-2" for="username">👤Username</label>
+        <input class="mb-5 p text-grayy p-5 rounded-[10px] outline-1 focus:outline-3 outline-[var(--bg-color)]" type="text" id="username" name="_username" value="" required />
 
-            <button type="submit">login</button>
-        </form>
+        <label class="p text-blackk mb-2" for="password">🔒Password</label>
+        <input class="mb-5 p text-grayy p-5 rounded-[10px] outline-1 focus:outline-3 outline-[var(--bg-color)]" type="password" id="password" name="_password" required />
+
+        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}" />
+
+        <button class="p text-blackk bg-primary text-whitee rounded-[10px] p-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">👍Login</button>
+        <p class="text-center mt-5 p text-grayy">or</p>
+        <a href="{#TO DO: Aggiungere link al register, grazie#}" class="p text-primary text-center rounded-[10px] p-3 cursor-pointer hover:brightness-120 transition-all duration-500" >Register</a> 
+      </form>
     </div>
 
 
