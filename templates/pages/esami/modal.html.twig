@@ -1,5 +1,3 @@
-
-
 {% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) %}
 
 {% block modal %}
@@ -7,68 +5,75 @@
 		<div class="p-[30px] flex items-start flex-col gap-3 rounded-[30px] bg-whitee aspect-video h-3/4 ">
 			<span class="flex justify-between items-center w-full">
 				<p class="p text-grayy">Nuovo Esame</p>
-				<img class="aspect-square h-[30px] cursor-pointer" src="{{ asset('icons/close.svg') }}" alt="Chiudi">
+				<img class="modalEsamiButton aspect-square h-[30px] cursor-pointer" src="{{ asset('icons/close.svg') }}" alt="Chiudi">
 
 
 			</span>
 			<h1 class="flex heading-1 text-blackk gap-4"><input placeholder="Nome" type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></h1>
-			<div class="flex w-full flex-col gap-4 items-start">
-				<p class="w-full p text-grayy font-bold">CFU: <input type="number" min="1" max="12" class="font-normal outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></p>
+			<div class="flex w-full h-full flex-col gap-4 items-start">
+				<p class="w-full p text-grayy font-bold">CFU:
+					<input type="number" min="1" max="12" class="font-normal outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></p>
 
 
-				<p class="w-full p text-grayy font-bold">Corso di <select class="font-normal">
-					<option>Matematica Generale</option>
-					<option>Corso 2</option>
-					<option>Corso 3</option>
-					<option>Corso 4</option>
-					<option>Corso 5</option>
-				</select></p>
+				<p class="w-full p text-grayy font-bold">Corso di
+					<select class="font-normal">
+						<option>Matematica Generale</option>
+						<option>Corso 2</option>
+						<option>Corso 3</option>
+						<option>Corso 4</option>
+						<option>Corso 5</option>
+					</select>
+				</p>
 
 				<div class="inline-flex rounded-lg border br-bg transition-all">
-          <label class="transition-all px-4 py-2 text-grayy  rounded-l-lg hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] bg-bg cursor-pointer">
-              <input type="radio" name="option" value="1" class="hidden peer">
-              <span class="peer-checked:text-[var(--primary-color)] font-bold">Da Fare</span>
-          </label>
-          <label class="transition-all px-4 py-2 text-grayy bg-whitee hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] cursor-pointer">
-              <input type="radio" name="option" value="2" class="hidden peer">
-              <span class="peer-checked:text-[var(--primary-color)] font-bold">Svolto</span>
-          </label>
-          <label  class="transition-all px-4 py-2  text-grayy bg-bg rounded-r-lg hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] cursor-pointer ">
-              <input type="radio" name="option" value="3" class="hidden peer">
-              <span class="peer-checked:text-[var(--primary-color)]  font-bold">Pianificato</span>
-          </label>
-        </div>
+					<label class="transition-all px-4 py-2 text-grayy  rounded-l-lg hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] bg-bg cursor-pointer">
+						<input type="radio" name="option" value="1" class="hidden peer">
+						<span class="peer-checked:text-[var(--primary-color)] font-bold">Da Fare</span>
+					</label>
+					<label class="transition-all px-4 py-2 text-grayy bg-whitee hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] cursor-pointer">
+						<input type="radio" name="option" value="2" class="hidden peer">
+						<span class="peer-checked:text-[var(--primary-color)] font-bold">Svolto</span>
+					</label>
+					<label class="transition-all px-4 py-2  text-grayy bg-bg rounded-r-lg hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] cursor-pointer ">
+						<input type="radio" name="option" value="3" class="hidden peer">
+						<span class="peer-checked:text-[var(--primary-color)]  font-bold">Pianificato</span>
+					</label>
+				</div>
 
-        <p class="w-full p text-grayy font-bold">Data Svolgimento <input type="date" class="font-normal"></p>
+				<p class="w-full p text-grayy font-bold">Data Svolgimento
+					<input type="date" class="font-normal"></p>
 
-        <p class="w-full p text-grayy font-bold"><input type="checkbox" class="font-normal"> Superato? </p>
+				<p class="w-full p text-grayy font-bold"><input type="checkbox" class="font-normal">
+					Superato?
+				</p>
 
-        <p class="w-full p text-grayy font-bold">Voto <input type="number" min="18" max="30" class="font-normal outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></p>
+				<p class="w-full p text-grayy font-bold">Voto
+					<input type="number" min="18" max="30" class="font-normal outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></p>
 
-        <div class="inline-flex rounded-lg border br-bg transition-all">
-          <label class="transition-all px-4 py-2 text-grayy  rounded-l-lg hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] bg-bg cursor-pointer">
-              <input type="radio" name="option2" value="1" class="hidden peer">
-              <span class="peer-checked:text-[var(--primary-color)] font-bold">Accetto</span>
-          </label>
-          <label class="transition-all px-4 py-2 text-grayy bg-whitee hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] cursor-pointer">
-              <input type="radio" name="option2" value="2" class="hidden peer">
-              <span class="peer-checked:text-[var(--primary-color)] font-bold">Rifiuto</span>
-          </label>
-        </div>
+				<div class="inline-flex rounded-lg border br-bg transition-all">
+					<label class="transition-all px-4 py-2 text-grayy  rounded-l-lg hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] bg-bg cursor-pointer">
+						<input type="radio" name="option2" value="1" class="hidden peer">
+						<span class="peer-checked:text-[var(--primary-color)] font-bold">Accetto</span>
+					</label>
+					<label class="transition-all px-4 py-2 text-grayy bg-whitee hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] cursor-pointer">
+						<input type="radio" name="option2" value="2" class="hidden peer">
+						<span class="peer-checked:text-[var(--primary-color)] font-bold">Rifiuto</span>
+					</label>
+				</div>
 
-        <p class="w-full p text-grayy font-bold">Data Appello <input type="date" class="font-normal"></p>
+				<p class="w-full p text-grayy font-bold">Data Appello
+					<input type="date" class="font-normal"></p>
 
-        
+                <button class="mt-auto  self-end p text-blackk bg-primary text-whitee rounded-[10px] px-5 py-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">Aggiungi</button>
+
 
 			</div>
-			
+
 
 		</div>
 
 
 	</div>
-	
 
 
-</div>
-{% endblock modal %}
+</div>{% endblock modal %}
