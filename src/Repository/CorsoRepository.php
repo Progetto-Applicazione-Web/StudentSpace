@@ -16,19 +16,17 @@ use Symfony\Bundle\SecurityBundle\Security;
 class CorsoRepository extends ServiceEntityRepository
 {
     private Security $security;
-    private EntityManagerInterface $entityManager;
 
-    public function __construct(ManagerRegistry $registry, Security $security, EntityManagerInterface $entityManager)
+    public function __construct(ManagerRegistry $registry, Security $security)
     {
         parent::__construct($registry, Corso::class);
 
         $this->security = $security;
-        $this->entityManager = $entityManager;
     }
 
     public function getCorsoById(int $id)
     {
-        $studente = $this->entityManager->getRepository(Utente::class)->getUtenteByUsername($this->security->getUser()->getUserIdentifier())->getStudente();
+        $studente = $this->getEntityManager()->getRepository(Utente::class)->getUtenteByUsername($this->security->getUser()->getUserIdentifier())->getStudente();
         if ($studente == null ) return null;
 
         return $this->findOneBy(['id' => $id, 'studente' => $studente]);

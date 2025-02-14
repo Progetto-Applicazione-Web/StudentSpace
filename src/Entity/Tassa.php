@@ -129,4 +129,17 @@ class Tassa
 
         return $this;
     }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'importo' => $this->importo,
+            'data_scadenza' => $this->dataScadenza,
+            'data_pagamento' => $this->dataPagamento,
+            'descrizione' => $this->descrizione,
+            'fatt_id' => $this->fattId,
+            'pagato' => $this->pagato
+        ];
+    }
 }

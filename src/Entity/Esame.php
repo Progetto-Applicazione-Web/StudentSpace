@@ -93,4 +93,15 @@ class Esame
        $this->accettato = $accettato;
         return $this;
     }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'data_svolgimento' => $this->dataSvolgimento,
+            'corso' => $this->corso->getId(),
+            'voto' => $this->voto,
+            'accettato' => $this->accettato,
+        ];
+    }
 }

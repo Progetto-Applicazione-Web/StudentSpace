@@ -128,4 +128,13 @@ class Utente implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->roles[] = $role;
     }
+
+    public function toArray(bool $featch_studente=true)
+    {
+        return [
+            'id' => $this->id,
+            'username' => $this->username,
+            'roles' => $this->roles,
+        ];
+    }
 }

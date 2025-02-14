@@ -181,13 +181,12 @@ class Corso
     {
         return [
             'id' => $this->id,
-            'studente' => '//TODO FIXARE', //$this->studente->toArray(),
             'nome' => $this->nome,
             'codice' => $this->codice,
             'docente' => $this->docente,
             'note' => $this->note,
-            'annoSvolgimento' => $this->annoSvolgimento,
-            'esami' => '//TODO FIXARE',//$this->esami->toArray(),
+            'anno_svolgimento' => $this->annoSvolgimento,
+            'esami' => array_map(fn($esame) => $esame->toArray(), $this->esami->toArray()),
             'cfu' => $this->cfu
         ];
     }

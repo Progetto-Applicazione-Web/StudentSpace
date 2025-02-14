@@ -198,4 +198,18 @@ class Studente
         }
         return $this;
     }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'matricola' => $this->matricola,
+            'nome' => $this->nome,
+            'cognome' => $this->cognome,
+            'user' => $this->user->toArray(),
+            'tasse' => array_map(fn($tassa) => $tassa->toArray(), $this->tasse->toArray()),
+            'esami' => array_map(fn($esame) => $esame->toArray(), $this->esami->toArray()),
+            'corsi' => "",//array_map(fn($corso) => $corso->toArray(), $this->corsi->toArray())
+        ];
+    }
 }

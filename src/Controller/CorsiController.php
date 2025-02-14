@@ -45,26 +45,17 @@ class CorsiController extends AbstractController
 
         $corso = $this->entityManager->getRepository(Corso::class)->getCorsoById($id);
 
-        return new JsonResponse([
-            'id' => $corso->getId(),
-            'codice' => $corso->getCodice(),
-            'nome' => $corso->getNome(),
-            'cfu' => $corso->getCfu(),
-            'docente' => $corso->getDocente(),
-            'anno' => $corso->getAnnoSvolgimento(),
-            'note' => $corso->getNote() ?? ''
-        ]);
+        return !($corso == null) ? new JsonResponse($corso->toArray()) : new JsonResponse();
     }
 
     #[Route('/add', name: 'api_add_corso')]
     public function addCorso(
-        #[MapQueryParameter] string $nome = '',
+        #[MapQueryParameter] string $nome = 'Senza Nome',
         #[MapQueryParameter('anno_svolgimento')] string $annoSvolgimento = '',
         #[MapQueryParameter] string $codice = '',
         #[MapQueryParameter] string $docente = '',
         #[MapQueryParameter] int $cfu = 0,
         #[MapQueryParameter] string $note = ''
-
     ): JsonResponse
     {
         if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
@@ -93,6 +84,43 @@ class CorsiController extends AbstractController
         return new JsonResponse([
             'status' => '200',
             'message' => 'Corso aggiunto',
+            'id' => $corso->getId(),
+        ]);
+    }
+
+    #[Route('/edit', name: 'api_edit_corso')]
+    public function editCorso(
+        #[MapQueryParameter] ?int $id,
+        #[MapQueryParameter] ?string $nome,
+        #[MapQueryParameter('anno_svolgimento')] ?string $annoSvolgimento,
+        #[MapQueryParameter] ?string $codice,
+        #[MapQueryParameter] ?string $docente,
+        #[MapQueryParameter] ?int $cfu,
+        #[MapQueryParameter] ?string $note
+    ): JsonResponse
+    {
+        if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
+        if ($id === null) return new JsonResponse(HttpError::BAD_REQUEST->getWithCustomMessage("Il parametro id deve essere valido per poter modificare il corso!"));
+
+        $corso = $this->entityManager->getRepository(Corso::class)->getCorsoById($id);
+
+        if ($corso == null) {
+            return new JsonResponse(HttpError::NOT_FOUNT->getWithCustomMessage("corsi/edit?id=$id"));
+        }
+
+        if ($nome != null) $corso->setNome($nome);
+        if ($annoSvolgimento != null) $corso->setAnnoSvolgimento($annoSvolgimento);
+        if ($codice != null) $corso->setCodice($codice);
+        if ($docente != null) $corso->setDocente($docente);
+        if ($cfu != null) $corso->setCfu($cfu);
+        if ($note != null) $corso->setNote($note);
+
+        $this->entityManager->persist($corso);
+        $this->entityManager->flush();
+
+        return new JsonResponse([
+            'status' => '200',
+            'message' => 'Corso aggiornato',
             'id' => $corso->getId(),
         ]);
     }
