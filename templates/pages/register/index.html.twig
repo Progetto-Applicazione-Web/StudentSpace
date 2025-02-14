@@ -1,17 +1,122 @@
-{% block body_content %}
-    <h1>Register</h1>
+{% extends 'base.html.twig' %}
 
-    {{ form_errors(registrationForm) }}
+{% block sidebar %}{% endblock %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.name) }}
-        {{ form_row(registrationForm.surname) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+{% block body %}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-{% endblock %}
+    
+	{#
+    
+    TODO: Implementare sta roba nel mio design, ciao brody, ti penso <3
+    
+    <h1 class="text-red-500">Register</h1>
+		
+		    {{ form_errors(registrationForm) }}
+		
+		    {{ form_start(registrationForm) }}
+		        {{ form_row(registrationForm.name) }}
+		        {{ form_row(registrationForm.surname) }}
+		        {{ form_row(registrationForm.username) }}
+		        {{ form_row(registrationForm.plainPassword, {
+		            label: 'Password'
+		        }) }}
+		        {{ form_row(registrationForm.agreeTerms) }}
+		
+		        <button type="submit" class="btn">Register</button>
+		    {{ form_end(registrationForm) }}
+		
+		#}
+
+
+	<div class="bg-bg flex flex-col h-full w-full items-center gap-5 justify-center">
+		<form class="shadows bg-whitee flex rounded-[20px] h-[500px] gap-10 p-10" action="{{ path('app_login') }}" method="post">
+
+
+            <div class="flex flex-col h-full gap-10">
+			    <img class="max-w-[400px]" src="{{ asset('imgs/logo.svg') }}" alt="">
+
+
+                <div class="flex flex-row h-full gap-10">
+
+                    <span class="flex flex-col justify-between">
+                        <div class="flex flex-col">
+                            <label class="p text-blackk " for="">🆔Matricola</label>
+                            <input class="p text-grayy  rounded-[10px] p-5 outline-1 outline-[var(--bg-color)] focus:outline-3" type="number" id="username" name="_username" value="" required/>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <label class="p text-blackk " for="">🔤Nome</label>
+                            <input class="p text-grayy  rounded-[10px] p-5 outline-1 outline-[var(--bg-color)] focus:outline-3" type="text" id="username" name="_username" value="" required/>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <label class="p text-blackk " for="">🔤Cognome</label>
+                            <input class="p text-grayy  rounded-[10px] p-5 outline-1 outline-[var(--bg-color)] focus:outline-3" type="text" id="username" name="_username" value="" required/>
+                        </div>
+
+
+                    </span>
+
+                    <div class="w-0 h-[250px] m-auto border-1 border-dotted br-bg"></div>
+
+
+                    <span class="flex flex-col justify-between">
+
+                        <div class="flex flex-col">
+                            <label class="p text-blackk " for="">👤Username</label>
+                            <input class="p text-grayy  rounded-[10px] p-5 outline-1 outline-[var(--bg-color)] focus:outline-3" type="text" id="username" name="_username" value="" required/>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <label class="p text-blackk " for="password">🙈Password</label>
+                            <input class="p text-grayy  rounded-[10px] p-5 outline-1 outline-[var(--bg-color)] focus:outline-3" type="password" id="password" name="_password" required/>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <label class="p text-blackk " for="password">🙉Conferma Password</label>
+                            <input class="p text-grayy  rounded-[10px] p-5 outline-1 outline-[var(--bg-color)] focus:outline-3" type="password" id="password" name="_password" required/>
+                        </div>
+                    </span>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-1 h-full">
+                <button class="p h-3/4 flex  flex-col text-blackk justify-center items-center bg-primary text-whitee cursor-pointer rounded-[10px] p-10 transition-all duration-500 hover:brightness-120" type="submit"> <img class="w-[30px] aspect-square" src="{{ asset('icons/arrow-right.svg') }}"></img> Vai </button>
+
+                <p class="esse3Button p h-1/4 flex flex-col text-blackk justify-center items-center bg-[#e2001a] text-whitee cursor-pointer rounded-[10px] p-10 transition-all duration-500 hover:brightness-120" type="submit"> <img class="w-[35px] aspect-square" src="{{ asset('icons/sync-white.svg') }}"></img> ESSE3 </p>
+
+                <a href="..\login" class="p text-primary text-center rounded-[10px] p-3 cursor-pointer hover:brightness-120 transition-all duration-500" >Login</a> 
+            </div>  
+
+		</form>
+
+        <div id="esse3Popup" class="popup-hidden backdrop-blur-md  absolute w-full top-0 left-0 h-full flex flex-col transition-all justify-center items-center bg-[#18196386]">
+		
+			<form class="flex  rounded-[20px] overflow-clip  w-[auto] h-auto ">
+
+				<img class="w-[300px] p-10 aspect-square bg-[#e2001a]" src="https://unicam.idp.cineca.it/images/logo.svg" alt="unicamEsse3">
+
+				<div class=" flex flex-col p-10 bg-whitee">
+					<label class="p text-blackk mb-2" for="username">Nome utente</label>
+					<input class="mb-5 p text-grayy p-5 rounded-[10px] outline-1 focus:outline-3 outline-[#e2001a]" type="text" id="username" name="_username" value="" required/>
+
+					<label class="p text-blackk mb-2" for="password">Password</label>
+					<input class="mb-5 p text-grayy p-5 rounded-[10px] outline-1 focus:outline-3 outline-[#e2001a]" type="password" id="password" name="_password" required/>
+				
+					<button class="p text-blackk bg-[#e2001a] text-whitee rounded-[10px] p-3 cursor-pointer hover:brightness-110 transition-all duration-500 font-bold" type="submit">Sincronizza</button>
+				
+				</div>
+
+			</form>
+		
+				<a class="esse3Button p text-whitee font-bold mt-5 text-center cursor-pointer  hover:brightness-75 ">Indietro</a>
+		
+		</div>
+
+	</div>
+
+    {% block javascripts_custom %}
+      <script src="{{ asset("scripts/openEsse3.js") }}"></script>
+    {% endblock %}
+
+{% endblock body%}

@@ -19,6 +19,17 @@
   --white-color: #F8F9FF;
 }
 
+
+.popup-hidden {
+  @apply opacity-0 invisible pointer-events-none;
+}
+.popup-visible {
+  @apply opacity-100 visible pointer-events-auto;
+}
+
+
+
+
 .heading-1 {
   @apply text-[48px] font-bold capitalize text-[var(--black-color)];
 }

@@ -2,7 +2,7 @@
 
 {% block sidebar %}
     
-    <div id="sidebar" class="lg:gap-8 gap-5 flex justify-between items-center h-auto bg-whitee flex-col p-[20px] lg:rounded-[40px] shadows  lg:justify-start lg:max-w-[348px] lg:h-full select-none">
+    <div id="sidebar" class="lg:gap-10 gap-5 flex justify-between items-center h-auto bg-whitee flex-col p-[35px] lg:rounded-[40px] shadows  lg:justify-start lg:max-w-[348px] lg:h-full select-none">
 
         <div class="flex w-full justify-between">
             <img id="menuButtonn" class="cursor-pointer lg:hidden w-[50px] aspect-square p-[8px]" src="{{ asset('icons/menu.svg') }}"> <!-- Hamburgher -->
@@ -70,12 +70,12 @@
 
         {% set config = {
             'style': {
-                'item': 'flex w-full h-auto hover:ml-5 transition-all items-center gap-[18px] px-[10px]',
+                'item': 'flex w-full h-auto hover:ml-5 transition-all items-center gap-[18px]',
                 'icon': 'w-[40px] aspect-square',
                 'name': 'p text-grayy capitalize'
             },
             'selected_style': {
-                    'item': 'flex w-full  h-auto items-center gap-[18px] px-[10px]',
+                    'item': 'flex w-full  h-auto items-center gap-[18px]',
                     'icon': 'w-[40px] aspect-square',
                     'name': 'p text-blackk capitalize'
             }
@@ -108,20 +108,28 @@
             {% endfor %}
         </div>
 
-        <div class="hidden lg:flex shrink-0 lg:w-full gap-5 h-auto justify-between lg:mt-auto items-center"> <!-- Account Pill -->
-            <img class="h-[53px] aspect-square object-contain rounded-full"
-                 src="{{ asset('imgs/profile.jpeg') }}"
-                 alt="">
+        <div class="hidden lg:flex flex-col lg:mt-auto w-full">
+            <div id="pill" class="cursor-pointer  p-3 rounded-[25px] transition-all hover:bg-[var(--bg-color)] flex shrink-0 lg:w-full gap-5 h-auto justify-between items-center "> <!-- Account Pill -->
+                <img class="h-[53px] aspect-square object-contain rounded-full"
+                    src="{{ asset('imgs/profile.jpeg') }}"
+                    alt="">
 
-            <div class=" flex flex-col justify-center">
-                <span class="flex lg:gap-0 gap-3 items-center"> <p class="p text-blackk font-bold text-nowrap">{{ (app.user.studente.nome | capitalize)~ " " ~ (app.user.studente.cognome | capitalize) }}</p> <img
-                            class="w-[20px] h-[20px]"
-                            src="{{ asset('down-arrow-5.svg') }}"
-                            alt=""></span>
-                <p class="p text-grayy">{{ app.user.roles | last | capitalize }}</p>
+                <div class=" flex flex-col justify-center" >
+                    <span class="flex lg:gap-0 gap-3 items-center"> <p class="p text-blackk font-bold text-nowrap">{{ (app.user.studente.nome | capitalize)~ " " ~ (app.user.studente.cognome | capitalize) }}</p> <img id="arrow" class="-rotate-90 transition-all"
+                                class="w-[20px] h-[20px]"
+                                src="{{ asset('down-arrow-5.svg') }}"
+                                alt=""></span>
+                    <p class="p text-grayy">{{ app.user.roles | last | capitalize }}</p>
+                </div>
+                
+                <img class="hidden lg:flex w-[40px] h-[40px]" src="{{ asset('icons/notifications-active.svg') }}" alt="Logo">
             </div>
-            
-            <img class="hidden lg:flex w-[40px] h-[40px]" src="{{ asset('icons/notifications-active.svg') }}" alt="Logo">
+            <div class="p    h-0 box-border flex bg-bg rounded-[25px] overflow-hidden transition-all duration-500" id="dropdown">
+                <div class="m-3 w-full gap-3 flex">
+                    <a href="../logout" class="font-black text-blackk  hover:!text-[var(--primary-color)] a flex justify-center items-center bg-whitee rounded-[15px] p-1 w-full">Esci</a>
+                    <a href="{#Mettere sync a ESSE3#}" class="font-black text-blackk  hover:!text-[var(--primary-color)] a flex justify-center items-center bg-whitee rounded-[15px] p-1 w-full text-center"><img class="aspect-square w-[30px]" src="{{ asset('icons/sync.svg') }}"> ESSE3</a>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock sidebar %}
