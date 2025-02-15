@@ -11,44 +11,44 @@
 
 
 			</span>
-			<h1 class="flex heading-1 text-blackk gap-4"><input placeholder="📖" type="text" maxlength="2" class="w-[60px] outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"><input placeholder="Nome" type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></h1>
+			<h1 class="flex heading-1 text-blackk gap-4">
+				<input placeholder="📖" type="text" maxlength="2" class="w-[60px] outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]">
+				<input name="nome" value="Senza Nome" placeholder="Nome" type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></h1>
 			<div class="flex w-full flex-col gap-2 items-start">
-				<p class="w-full p text-grayy"><input type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]" placeholder="Codice Corso"></p>
-				<p class="w-full p text-grayy">CFU: <input type="number" min="1" max="12" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></p>
-
-
-				<p class="w-full p text-grayy"><input placeholder="Docenti" type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]" placeholder="Codice Corso"></p>
-
-				
-
+				<p class="w-full p text-grayy">
+					<input id="codice" type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]" placeholder="Codice Corso">
+				</p>
+				<p class="w-full p text-grayy">
+					CFU: <input id="cfu" value="6" type="number" min="1" max="12" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]">
+				</p>
+				<p class="w-full p text-grayy">
+					<input id="docente" placeholder="Docenti" type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]">
+				</p>
 				<p class="p text-grayy">Anno
-				<select>
-					<option>1°</option>
-					<option>2°</option>
-					<option>3°</option>
-					<option>4°</option>
-					<option>5°</option>
-				</select></p>
+					<select id="anno_svolgimento">
+						<option value="1">1°</option>
+						<option value="2">2°</option>
+						<option value="3">3°</option>
+						<option value="4">4°</option>
+						<option value="5">5°</option>
+					</select>
+				</p>
 				<span class="p bg-secondary px-4 py-1 w-auto text-whitee rounded-[8px]">
-					<select>
-						<option>Superato</option>
-						<option>Da Dare</option>
-						<option>Attesa Esito</option>
+					<select id="stato">
+						{% for stato in stati_possibili_corso %}
+							<option value="{{ stato.id }}"> {{ stato.nome }} </option>
+						{% endfor %}
 					</select>
 				</span>
 			</div>
 			<div class="overflow-y-scroll scrollbar-none mt-5 h-full w-full">
-				<p class="p text-blackk w-full"><textarea class="w-full min-h-[300px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Descrizione" ></textarea></p>
+				<p class="p text-blackk w-full"><textarea id="note" class="w-full min-h-[300px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Descrizione" ></textarea></p>
 			</div>
 
-			<button class="self-end p text-blackk bg-primary text-whitee rounded-[10px] px-5 py-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">Aggiungi</button>
+			<button id="aggiungiCorsoBtn" class="self-end p text-blackk bg-primary text-whitee rounded-[10px] px-5 py-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">Aggiungi</button>
 
 		</div>
-
-
 	</div>
-	
-
 
 </div>
 {% endblock modal %}
