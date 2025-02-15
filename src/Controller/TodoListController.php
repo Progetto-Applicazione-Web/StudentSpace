@@ -37,7 +37,7 @@ final class TodoListController extends AbstractController
     {
         if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
 
-        $titolo = $request->request->get('titolo');
+        $titolo = strip_tags($request->request->get('titolo'));
 
 
         //$todo = new TodoList();

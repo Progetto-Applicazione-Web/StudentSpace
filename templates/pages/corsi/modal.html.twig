@@ -3,7 +3,7 @@
 {% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) %}
 
 {% block modal %}
-	<div class=" flex justify-center items-center z-50 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
+	<form id="formAddCorso" class=" flex justify-center items-center z-50 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
 		<div class="p-[30px] flex items-start flex-col gap-3 rounded-[30px] bg-whitee aspect-video h-3/4 ">
 			<span class="flex justify-between items-center w-full">
 				<p class="p text-grayy">Nuovo Corso</p>
@@ -12,8 +12,8 @@
 
 			</span>
 			<h1 class="flex heading-1 text-blackk gap-4">
-				<input placeholder="📖" type="text" maxlength="2" class="w-[60px] outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]">
-				<input name="nome" value="Senza Nome" placeholder="Nome" type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></h1>
+				<input id="icona" placeholder="📖" type="text" maxlength="2" class="w-[60px] outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]">
+				<input id="nome" name="nome" value="Senza Nome" placeholder="Nome" type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></h1>
 			<div class="flex w-full flex-col gap-2 items-start">
 				<p class="w-full p text-grayy">
 					<input id="codice" type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]" placeholder="Codice Corso">
@@ -44,11 +44,7 @@
 			<div class="overflow-y-scroll scrollbar-none mt-5 h-full w-full">
 				<p class="p text-blackk w-full"><textarea id="note" class="w-full min-h-[300px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Descrizione" ></textarea></p>
 			</div>
-
-			<button id="aggiungiCorsoBtn" class="modalCorsiButton self-end p text-blackk bg-primary text-whitee rounded-[10px] px-5 py-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">Aggiungi</button>
-
+			<button id="btnAddCorso" class="modalCorsiButton self-end p text-blackk bg-primary text-whitee rounded-[10px] px-5 py-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">Aggiungi</button>
 		</div>
-	</div>
-
-</div>
+	</form>
 {% endblock modal %}

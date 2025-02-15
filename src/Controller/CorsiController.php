@@ -52,25 +52,30 @@ class CorsiController extends AbstractController
 
     #[Route('/add', name: 'api_add_corso')]
     public function addCorso(
-        #[MapQueryParameter] string $nome = 'Senza Nome',
-        #[MapQueryParameter] string $codice = '',
-        #[MapQueryParameter] int $cfu = 6,
-        #[MapQueryParameter] string $docente = '',
-        #[MapQueryParameter('anno_svolgimento')] string $annoSvolgimento = '',
-        #[MapQueryParameter] int $stato_id = 1,
-        #[MapQueryParameter] string $note = ''
+        Request $request
     ): JsonResponse
     {
         if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
 
-        $nome = strip_tags($nome);
-        $codice = strip_tags($codice);
-        $docente = strip_tags($docente);
-        $annoSvolgimento = strip_tags($annoSvolgimento);
-        $note = strip_tags($note);
-
-        $stato = $this->entityManager->getRepository(StatoCorso::class)->findOneBy(['id' => $stato_id]);
-
+        $nome = strip_tags($request->request->get("nome"));
+        $codice = strip_tags($request->request->get("codice"));
+        $cfu = strip_tags($request->request->get("cfu"));
+        $docente = strip_tags($request->request->get("docente"));
+        $annoSvolgimento = strip_tags($request->request->get("anno_svolgimento"));
+        $note = strip_tags($request->request->get("note"));
+        $statoId = (int)strip_tags($request->request->get("stato_id"));
+        /*
+         dd([
+             'nome' => $nome,
+             'codice' => $codice,
+             'cfu' => $cfu,
+             'docente' => $docente,
+             'anno_svolgimento' => $annoSvolgimento,
+             'note' => $note,
+             'stato_id' => $statoId
+         ]);*/
+        // Controllo se lo stato esiste
+        $stato = $this->entityManager->getRepository(StatoCorso::class)->findOneBy(['id' => $statoId]);
         if ($stato == null) return new JsonResponse(HttpError::BAD_REQUEST->getWithCustomMessage("Lo stato del corso che hai passato non é valido!"));
 
         $corso = new Corso();
@@ -132,4 +137,5 @@ class CorsiController extends AbstractController
             'id' => $corso->getId(),
         ]);
     }
+
 }
