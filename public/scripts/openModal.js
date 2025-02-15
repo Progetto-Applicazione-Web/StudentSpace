@@ -77,7 +77,7 @@
   const modalEditCorsi = document.getElementById('modalEditCorsi');
 
   const toggleModalEdit2 = () => {
-    console.log("Check");
+    console.log(modalEditCorsiButton);
     modalEditCorsi.classList.toggle('open');
   };
 
