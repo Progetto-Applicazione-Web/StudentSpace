@@ -81,37 +81,13 @@
             </div>
 
             <div class="flex flex-col gap-1 h-full">
-                <button class="p h-3/4 flex  flex-col text-blackk justify-center items-center bg-primary text-whitee cursor-pointer rounded-[10px] p-10 transition-all duration-500 hover:brightness-120" type="submit"> <img class="w-[30px] aspect-square" src="{{ asset('icons/arrow-right.svg') }}"></img> Vai </button>
-
-                <p class="esse3Button p h-1/4 flex flex-col text-blackk justify-center items-center bg-[#e2001a] text-whitee cursor-pointer rounded-[10px] p-10 transition-all duration-500 hover:brightness-120" type="submit"> <img class="w-[35px] aspect-square" src="{{ asset('icons/sync-white.svg') }}"></img> ESSE3 </p>
-
+                <button class="p h-full flex  flex-col text-blackk justify-center items-center bg-primary text-whitee cursor-pointer rounded-[10px] p-10 transition-all duration-500 hover:brightness-120" type="submit"> <img class="w-[30px] aspect-square" src="{{ asset('icons/arrow-right.svg') }}"></img> Vai </button>
                 <a href="..\login" class="p text-primary text-center rounded-[10px] p-3 cursor-pointer hover:brightness-120 transition-all duration-500" >Login</a> 
             </div>  
 
 		</form>
 
-        <div id="esse3Popup" class="popup-hidden backdrop-blur-md  absolute w-full top-0 left-0 h-full flex flex-col transition-all justify-center items-center bg-[#18196386]">
-		
-			<form class="flex  rounded-[20px] overflow-clip  w-[auto] h-auto ">
-
-				<img class="w-[300px] p-10 aspect-square bg-[#e2001a]" src="https://unicam.idp.cineca.it/images/logo.svg" alt="unicamEsse3">
-
-				<div class=" flex flex-col p-10 bg-whitee">
-					<label class="p text-blackk mb-2" for="username">Nome utente</label>
-					<input class="mb-5 p text-grayy p-5 rounded-[10px] outline-1 focus:outline-3 outline-[#e2001a]" type="text" id="username" name="_username" value="" required/>
-
-					<label class="p text-blackk mb-2" for="password">Password</label>
-					<input class="mb-5 p text-grayy p-5 rounded-[10px] outline-1 focus:outline-3 outline-[#e2001a]" type="password" id="password" name="_password" required/>
-				
-					<button class="p text-blackk bg-[#e2001a] text-whitee rounded-[10px] p-3 cursor-pointer hover:brightness-110 transition-all duration-500 font-bold" type="submit">Sincronizza</button>
-				
-				</div>
-
-			</form>
-		
-				<a class="esse3Button p text-whitee font-bold mt-5 text-center cursor-pointer  hover:brightness-75 ">Indietro</a>
-		
-		</div>
+        
 
 	</div>
 
