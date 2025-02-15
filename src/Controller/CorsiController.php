@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Corso;
+use App\Entity\StatoCorso;
 use App\Entity\Studente;
 use App\Entity\Utente;
 use App\HttpUtils\HttpError;
@@ -31,10 +32,11 @@ class CorsiController extends AbstractController
     {
         if (!$this->isGranted('IS_AUTHENTICATED')) return $this->redirectToRoute('app_login');
 
-        // TODO: Ritornare tutti i corsi dell'utente loggato
+
 
         return $this->render('pages/corsi/index.html.twig', [
             'controller_name' => 'CorsiController',
+            'stati_possibili_corso' => $this->entityManager->getRepository(StatoCorso::class)->findAll()
         ]);
     }
 
@@ -51,20 +53,25 @@ class CorsiController extends AbstractController
     #[Route('/add', name: 'api_add_corso')]
     public function addCorso(
         #[MapQueryParameter] string $nome = 'Senza Nome',
-        #[MapQueryParameter('anno_svolgimento')] string $annoSvolgimento = '',
         #[MapQueryParameter] string $codice = '',
+        #[MapQueryParameter] int $cfu = 6,
         #[MapQueryParameter] string $docente = '',
-        #[MapQueryParameter] int $cfu = 0,
+        #[MapQueryParameter('anno_svolgimento')] string $annoSvolgimento = '',
+        #[MapQueryParameter] int $stato_id = 1,
         #[MapQueryParameter] string $note = ''
     ): JsonResponse
     {
         if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
 
         $nome = strip_tags($nome);
-        $annoSvolgimento = strip_tags($annoSvolgimento);
         $codice = strip_tags($codice);
         $docente = strip_tags($docente);
+        $annoSvolgimento = strip_tags($annoSvolgimento);
         $note = strip_tags($note);
+
+        $stato = $this->entityManager->getRepository(StatoCorso::class)->findOneBy(['id' => $stato_id]);
+
+        if ($stato == null) return new JsonResponse(HttpError::BAD_REQUEST->getWithCustomMessage("Lo stato del corso che hai passato non é valido!"));
 
         $corso = new Corso();
         $corso
@@ -73,6 +80,7 @@ class CorsiController extends AbstractController
             ->setCodice($codice)
             ->setDocente($docente)
             ->setCfu($cfu)
+            ->setStato($stato)
             ->setNote($note);
 
         $studente = $this->entityManager->getRepository(Utente::class)->getUtenteByUsername($this->getUser()->getUserIdentifier())->getStudente();

@@ -44,6 +44,10 @@ class Corso
     #[ORM\Column]
     private ?int $cfu = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?StatoCorso $stato = null;
+
     public function __construct()
     {
         $this->esami = new ArrayCollection();
@@ -189,5 +193,17 @@ class Corso
             'esami' => array_map(fn($esame) => $esame->toArray(), $this->esami->toArray()),
             'cfu' => $this->cfu
         ];
+    }
+
+    public function getStato(): ?StatoCorso
+    {
+        return $this->stato;
+    }
+
+    public function setStato(?StatoCorso $stato): static
+    {
+        $this->stato = $stato;
+
+        return $this;
     }
 }
