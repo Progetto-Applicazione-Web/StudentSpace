@@ -1,36 +1,52 @@
-{% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) %}
+
 
 {% block modal %}
-	<div class="flex justify-center items-center z-50 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
-		<div class="p-[30px] flex items-start flex-col gap-3 rounded-[30px] bg-whitee aspect-video h-3/4 ">
-			<span class="flex justify-between items-center w-full">
-				
-				<p class="p text-grayy cursor-pointer">Nuova Tassa</p>
-					
-
-				<img class="modalEditTasseButton aspect-square h-[30px] cursor-pointer" src="{{ asset('icons/close.svg') }}" alt="Chiudi">
-
-
+	<div class="hidden confirm-popup  justify-center items-center z-50 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
+	
+		<div class="flex flex-col gap-5 h-auto max-w-[400px] p-10 bg-whitee rounded-[30px] ">
+			<span>
+				<h1 class="heading-1 text-blackk">Sicuro?</h1>
+				<p class="p text-grayy">L'azione sarà irreversibile.</p>
+			</span>
+			<span class="flex gap-3">
+				<button class="eliminaButton modalEditTasseButton font-bold transition-all cursor-pointer bg-whitee border-2 border-red-400 p-3 text-red-400 rounded-[10px] hover:!bg-red-400 hover:text-white">Si, sono sicuro</button>
+				<button class="eliminaButton transition-all hover:brightness-125 cursor-pointer bg-primary p-3 text-whitee rounded-[10px]">Annulla</button>
 			</span>
 
-			<h1 class="flex heading-1 text-blackk gap-4">€<input placeholder="Importo" type="number" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></h1>
+		</div>
+	
+	</div>
+
+
+
+	<div class="inputParent flex justify-center items-center z-40 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
+		<div class="p-[30px] flex items-start flex-col gap-3 rounded-[30px] bg-whitee aspect-video h-3/4 ">
+			<span class="flex justify-between items-center w-full">
+			<span class="flex gap-4">
+				<p class="p text-primary font-bold cursor-pointer modificaButton">Modifica</p>
+				<p class="p text-red-400 font-bold cursor-pointer  eliminaButton">Elimina</p>
+			</span>
+				<img class="modalEditTasseButton aspect-square h-[30px] cursor-pointer" src="{{ asset('icons/close.svg') }}" alt="Chiudi">
+			</span>
+
+			<h1 class="flex heading-1 text-blackk gap-4">€<input disabled placeholder="Importo" type="number" class=" rounded-[10px]"></h1>
 			<div class="flex h-full w-full flex-col gap-2 items-start">
 
 				<p class="w-full p text-grayy font-bold">Scadenza
-					<input type="date" class="font-normal"></p>
+					<input disabled type="date" class="font-normal"></p>
 
 
 				<div class="overflow-y-scroll scrollbar-none mt-5 h-full w-full">
 					<p class="p text-blackk w-full">
-						<textarea class="w-full min-h-[300px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Descrizione"></textarea>
+						<textarea disabled class="w-full min-h-[300px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Descrizione"></textarea>
 					</p>
 				</div>
 
-				<p class="w-full p text-grayy font-bold"><input type="checkbox" class="font-normal">
+				<p class="w-full p text-grayy font-bold"><input disabled type="checkbox" class="font-normal">
 					Pagato?
 				</p>
 
-        <button class="mt-auto self-end p text-blackk bg-primary text-whitee rounded-[10px] px-5 py-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">Aggiungi</button>
+        
 
 			</div>
 

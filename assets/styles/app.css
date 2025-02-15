@@ -19,6 +19,8 @@
   --white-color: #F8F9FF;
 }
 
+.input-outlines{@apply outline-1 outline-dashed outline-[var(--gray-color)]}
+
 
 .popup-hidden {
   @apply opacity-0 invisible pointer-events-none;

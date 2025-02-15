@@ -1,22 +1,41 @@
-{% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) %}
-
 {% block modal %}
-	<div class=" flex justify-center items-center z-50 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
+
+	<div class="hidden confirm-popup  justify-center items-center z-50 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
+	
+		<div class="flex flex-col gap-5 h-auto max-w-[400px] p-10 bg-whitee rounded-[30px] ">
+			<span>
+				<h1 class="heading-1 text-blackk">Sicuro?</h1>
+				<p class="p text-grayy">L'azione sarà irreversibile.</p>
+			</span>
+			<span class="flex gap-3">
+				<button class="eliminaButton modalEditEsamiButton font-bold transition-all cursor-pointer bg-whitee border-2 border-red-400 p-3 text-red-400 rounded-[10px] hover:!bg-red-400 hover:text-white">Si, sono sicuro</button>
+				<button class="eliminaButton transition-all hover:brightness-125 cursor-pointer bg-primary p-3 text-whitee rounded-[10px]">Annulla</button>
+			</span>
+
+		</div>
+	
+	</div>
+
+
+
+	<div class="modal inputParent flex justify-center items-center z-40 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
 		<div class="p-[30px] flex items-start flex-col gap-3 rounded-[30px] bg-whitee aspect-video h-3/4 ">
 			<span class="flex justify-between items-center w-full">
-				<p class="p text-grayy">Nuovo Esame</p>
-				<img class="modalEsamiButton aspect-square h-[30px] cursor-pointer" src="{{ asset('icons/close.svg') }}" alt="Chiudi">
-
-
+			<span class="flex gap-4">
+				<p class="p text-primary font-bold cursor-pointer modificaButton">Modifica</p>
+				<p class="p text-red-400 font-bold cursor-pointer  eliminaButton">Elimina</p>
 			</span>
-			<h1 class="flex heading-1 text-blackk gap-4"><input placeholder="Nome" type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></h1>
+				<img class="modalEditEsamiButton aspect-square h-[30px] cursor-pointer" src="{{ asset('icons/close.svg') }}" alt="Chiudi">
+			</span>
+
+			<h1 class="flex heading-1 text-blackk gap-4"><input disabled placeholder="Nome" type="text" class=" rounded-[10px]"></h1>
 			<div class="flex w-full h-full flex-col gap-4 items-start">
 				<p class="w-full p text-grayy font-bold">CFU:
-					<input type="number" min="1" max="12" class="font-normal outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></p>
+					<input disabled type="number" min="1" max="12" class="font-normal  rounded-[10px]"></p>
 
 
 				<p class="w-full p text-grayy font-bold">Corso di
-					<select class="font-normal">
+					<select disabled class="font-normal">
 						<option>Matematica Generale</option>
 						<option>Corso 2</option>
 						<option>Corso 3</option>
@@ -27,44 +46,43 @@
 
 				<div class="inline-flex rounded-lg border br-bg transition-all">
 					<label class="transition-all px-4 py-2 text-grayy  rounded-l-lg hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] bg-bg cursor-pointer">
-						<input type="radio" name="option" value="1" class="hidden peer">
+						<input disabled type="radio" name="option" value="1" class="hidden peer">
 						<span class="peer-checked:text-[var(--primary-color)] font-bold">Da Fare</span>
 					</label>
 					<label class="transition-all px-4 py-2 text-grayy bg-whitee hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] cursor-pointer">
-						<input type="radio" name="option" value="2" class="hidden peer">
+						<input disabled type="radio" name="option" value="2" class="hidden peer">
 						<span class="peer-checked:text-[var(--primary-color)] font-bold">Svolto</span>
 					</label>
 					<label class="transition-all px-4 py-2  text-grayy bg-bg rounded-r-lg hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] cursor-pointer ">
-						<input type="radio" name="option" value="3" class="hidden peer">
+						<input disabled type="radio" name="option" value="3" class="hidden peer">
 						<span class="peer-checked:text-[var(--primary-color)]  font-bold">Pianificato</span>
 					</label>
 				</div>
 
 				<p class="w-full p text-grayy font-bold">Data Svolgimento
-					<input type="date" class="font-normal"></p>
+					<input disabled type="date" class="font-normal"></p>
 
-				<p class="w-full p text-grayy font-bold"><input type="checkbox" class="font-normal">
+				<p class="w-full p text-grayy font-bold"><input disabled type="checkbox" class="font-normal">
 					Superato?
 				</p>
 
 				<p class="w-full p text-grayy font-bold">Voto
-					<input type="number" min="18" max="30" class="font-normal outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></p>
+					<input disabled type="number" min="18" max="30" class="font-normal  rounded-[10px]"></p>
 
 				<div class="inline-flex rounded-lg border br-bg transition-all">
 					<label class="transition-all px-4 py-2 text-grayy  rounded-l-lg hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] bg-bg cursor-pointer">
-						<input type="radio" name="option2" value="1" class="hidden peer">
+						<input disabled type="radio" name="option2" value="1" class="hidden peer">
 						<span class="peer-checked:text-[var(--primary-color)] font-bold">Accetto</span>
 					</label>
 					<label class="transition-all px-4 py-2 text-grayy bg-whitee hover:!bg-[var(--primary-color)] hover:!text-[var(--white-color)] cursor-pointer">
-						<input type="radio" name="option2" value="2" class="hidden peer">
+						<input disabled type="radio" name="option2" value="2" class="hidden peer">
 						<span class="peer-checked:text-[var(--primary-color)] font-bold">Rifiuto</span>
 					</label>
 				</div>
 
 				<p class="w-full p text-grayy font-bold">Data Appello
-					<input type="date" class="font-normal"></p>
-
-                <button class="mt-auto  self-end p text-blackk bg-primary text-whitee rounded-[10px] px-5 py-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">Aggiungi</button>
+					<input disabled type="date" class="font-normal"></p>
+					
 
 
 			</div>

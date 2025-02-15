@@ -1,19 +1,33 @@
-
-
-
-
 {% block modal %}
-	<div class=" flex justify-center items-center z-50 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
+
+	<div class="hidden confirm-popup  justify-center items-center z-50 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
+	
+		<div class="flex flex-col gap-5 h-auto max-w-[400px] p-10 bg-whitee rounded-[30px] ">
+			<span>
+				<h1 class="heading-1 text-blackk">Sicuro?</h1>
+				<p class="p text-grayy">L'azione sarà irreversibile.</p>
+			</span>
+			<span class="flex gap-3">
+				<button class="eliminaButton modalEditCorsiButton font-bold transition-all cursor-pointer bg-whitee border-2 border-red-400 p-3 text-red-400 rounded-[10px] hover:!bg-red-400 hover:text-white">Si, sono sicuro</button>
+				<button class="eliminaButton transition-all hover:brightness-125 cursor-pointer bg-primary p-3 text-whitee rounded-[10px]">Annulla</button>
+			</span>
+
+		</div>
+	
+	</div>
+
+
+
+	<div class="inputParent flex justify-center items-center z-40 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
 		<div class="p-[30px] flex items-start flex-col gap-3 rounded-[30px] bg-whitee aspect-video h-3/4 ">
 			<span class="flex justify-between items-center w-full">
 			<span class="flex gap-4">
-				<p class="p text-primary font-bold cursor-pointer">Modifica</p>
-				<p class="p text-red-400 font-bold cursor-pointer">Elimina</p>
+				<p class="p text-primary font-bold cursor-pointer   modificaButton">Modifica</p>
+				<p class="p text-red-400 font-bold cursor-pointer  eliminaButton">Elimina</p>
 			</span>
 				<img class="modalEditCorsiButton aspect-square h-[30px] cursor-pointer" src="{{ asset('icons/close.svg') }}" alt="Chiudi">
-
-
 			</span>
+
 			<h1 class="flex heading-1 text-blackk gap-4"><input disabled placeholder="📖" type="text" maxlength="2" class="w-[60px] rounded-[10px]"><input disabled placeholder="Nome" type="text" class=" rounded-[10px]"></h1>
 			<div class="flex w-full flex-col gap-2 items-start">
 				<p class="w-full p text-grayy"><input disabled type="text" class="rounded-[10px]" placeholder="Codice Corso"></p>
