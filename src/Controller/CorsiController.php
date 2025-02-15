@@ -57,6 +57,9 @@ class CorsiController extends AbstractController
     {
         if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
 
+        $icona = $request->request->get("icona");
+        //if (strlen($icona)) return new JsonResponse(HttpError::BAD_REQUEST->getWithCustomMessage("L'icona non puo' superare 2 caratteri di lunghezza"));
+
         $nome = strip_tags($request->request->get("nome"));
         $codice = strip_tags($request->request->get("codice"));
         $cfu = strip_tags($request->request->get("cfu"));
@@ -80,6 +83,7 @@ class CorsiController extends AbstractController
 
         $corso = new Corso();
         $corso
+            ->setIcona($icona)
             ->setNome($nome)
             ->setAnnoSvolgimento($annoSvolgimento)
             ->setCodice($codice)

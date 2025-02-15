@@ -11,7 +11,7 @@
         {% for corso in app.user.studente.corsi | sort((a, b) => b.annoSvolgimento <=> a.annoSvolgimento) | sort((a, b) => a.isCompletato <=> b.isCompletato) %}
             <div class="flex items-center justify-between px-[30px] py-[20px] border-2 br-bg rounded-[30px]"> <!-- Item Corsi -->
                 <div class="flex items-center gap-5">
-                    <p class="heading-1">‍💻</p>
+                    <p class="heading-1">{{ corso.icona }}</p>
                     <div>
                         <h2 class="heading-2 text-blackk">{{ corso.nome | title }}</h2>
                         <p class="p text-grayy">{{ corso.docente | title }} - {{ corso.annoSvolgimento }}° Anno</p>

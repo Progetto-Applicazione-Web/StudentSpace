@@ -48,6 +48,9 @@ class Corso
     #[ORM\JoinColumn(nullable: false)]
     private ?StatoCorso $stato = null;
 
+    #[ORM\Column(length: 2)]
+    private ?string $icona = null;
+
     public function __construct()
     {
         $this->esami = new ArrayCollection();
@@ -203,6 +206,18 @@ class Corso
     public function setStato(?StatoCorso $stato): static
     {
         $this->stato = $stato;
+
+        return $this;
+    }
+
+    public function getIcona(): ?string
+    {
+        return $this->icona;
+    }
+
+    public function setIcona(string $icona): static
+    {
+        $this->icona = $icona;
 
         return $this;
     }
