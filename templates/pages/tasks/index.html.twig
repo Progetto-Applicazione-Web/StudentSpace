@@ -347,3 +347,8 @@
 
 	</div>
 {% endblock %}
+
+ {% block javascripts_custom %}
+	 {{ parent() }}
+	 <script src="{{ asset("scripts/service/ajax/submitTodoList.js") }}"></script>
+ {% endblock %}

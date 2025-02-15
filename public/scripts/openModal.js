@@ -31,7 +31,6 @@
   const modalTasks = document.getElementById('modalTasks');
 
   const toggleModal3 = () => {
-    console.log("Check");
     modalTasks.classList.toggle('open');
   };
 
