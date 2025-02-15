@@ -7,7 +7,8 @@
 {% endblock %}
 
 {% block body_content %}
-    <div id="corsi" class="overflow-x-hidden overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex  flex-col p-[20px] gap-[20px] rounded-[40px] shadows justify-start">
+    {% set icona_superato = asset("icons/ok-circle.svg") %}
+    <div id="corsi" data-superato-icon-url="{{ icona_superato }}" class="overflow-x-hidden overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex  flex-col p-[20px] gap-[20px] rounded-[40px] shadows justify-start">
         {% for corso in app.user.studente.corsi | sort((a, b) => b.annoSvolgimento <=> a.annoSvolgimento) | sort((a, b) => a.isCompletato <=> b.isCompletato) %}
             <div class="flex items-center justify-between px-[30px] py-[20px] border-2 br-bg rounded-[30px]"> <!-- Item Corsi -->
                 <div class="flex items-center gap-5">
@@ -18,7 +19,7 @@
                     </div>
                 </div>
                 {% if corso.stato.id == 3 %}
-                    <img src="{{asset("icons/ok-circle.svg")}}" alt="icona">
+                    <img src="{{ icona_superato }}" alt="icona">
                 {% endif %}
             </div>
         {% endfor %}
@@ -29,5 +30,5 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     {{ parent() }}
 
-    <script src="{{ asset('scripts/service/ajax/submitCorso.js') }}"></script>
+    <script src="{{ asset('scripts/service/ajax/submitCorso.twig.js') }}"></script>
 {% endblock %}
