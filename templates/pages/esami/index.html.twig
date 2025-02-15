@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block body %}
+    <div class="hidden absolute" id="modalEsami">{% include 'pages/esami/modal.html.twig' %}</div>
+    <div class="hidden absolute" id="modalEditEsami">{% include 'pages/esami/modalEdit.html.twig' %}</div>
+    {{ parent() }}
+{% endblock %}
+
 {% block body_content %}
 	<div class="flex-col-reverse overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex lg:flex-row p-[20px] gap-[20px] rounded-[40px] shadows justify-start">
 

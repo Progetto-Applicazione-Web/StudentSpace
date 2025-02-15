@@ -105,7 +105,7 @@
                 <img class="h-[53px] aspect-square object-contain rounded-full"
                     src="{{ asset('imgs/profile.jpeg') }}"
                     alt="">
-
+                
                 <div class="w-auto whitespace-nowrap flex flex-col justify-center" >
                     <span class="flex lg:gap-0 gap-3 items-center"> <p class="p text-blackk font-bold text-nowrap">{{ (app.user.studente.nome | capitalize)~ " " ~ (app.user.studente.cognome | capitalize) }}</p> <img id="arrow" class="-rotate-90 transition-all"
                                 class="w-[20px] h-[20px]"
@@ -119,8 +119,9 @@
                 <div class="m-3 w-full gap-3 flex">
                     <a href="../logout" class="font-black text-blackk  hover:!text-[var(--primary-color)] a flex justify-center items-center bg-whitee rounded-[15px] p-1 w-full">Esci</a>
                     <a href="{#Mettere sync a ESSE3#}" class="font-black text-blackk  hover:!text-[var(--primary-color)] a flex justify-center items-center bg-whitee rounded-[15px] p-1 w-full text-center"><img class="aspect-square w-[30px]" src="{{ asset('icons/sync.svg') }}"> ESSE3</a>
+
                 </div>
             </div>
         </div>
     </div>
-{% endblock sidebar %}
+{% endblock %}

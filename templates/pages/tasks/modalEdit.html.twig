@@ -1,0 +1,60 @@
+{% set route_name = app.request.get('_route')|replace({'app_': '', '_': ' '}) %}
+
+{% block modal %}
+	<div class="flex justify-center items-center z-50 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
+		<div class="p-[30px] flex items-start flex-col gap-3 rounded-[30px] bg-whitee aspect-video h-3/4 ">
+			<span class="flex justify-between items-center w-full">
+
+				<span class="flex gap-3">
+					<div class="text-blue-500">Test</div>
+					<p class="p text-primary font-bold cursor-pointer">Modifica</p>
+					<p class="p text-[#ff0000] font-bold cursor-pointer">Elimina</p>
+				</span>
+
+				<img class="modalEditTasksButton aspect-square h-[30px] cursor-pointer" src="{{ asset('icons/close.svg') }}" alt="Chiudi">
+
+
+			</span>
+
+			<h1 class="flex heading-1 text-blackk gap-4"><input placeholder="Nome Task" type="text" class="outline-1 outline-dashed outline-[var(--gray-color)] rounded-[10px]"></h1>
+			<div class="flex h-full w-full flex-col gap-5 items-start">
+
+
+				<div class="flex mt-5 flex-col gap-3">
+					<p class="w-full p text-grayy "><input type="checkbox" class="font-normal">
+						Task da generare tramite script
+					</p>
+					<p class="w-full p text-grayy "><input type="checkbox" class="font-normal">
+						Task da generare tramite script
+					</p>
+					<p class="w-full p text-grayy "><input type="checkbox" class="font-normal">
+						Task da generare tramite script
+					</p>
+					<p class="w-full p text-grayy "><input type="checkbox" class="font-normal">
+						Task da generare tramite script
+					</p>
+					<p class="w-full p text-grayy "><input type="checkbox" class="font-normal">
+						Task da generare tramite script
+					</p>
+					<p class="w-full p text-grayy "><input type="checkbox" class="font-normal">
+						Task da generare tramite script
+					</p>
+				</div>
+        
+        <span class="flex gap-3">
+          <input placeholder="Task" type="text" class="outline-1 p-3 outline-dashed outline-[var(--gray-color)] rounded-[10px]">
+
+
+          <button class="p bg-grayy font-bold text-whitee rounded-[10px] px-16 py-2 cursor-pointer hover:brightness-90 transition-all duration-500">+</button>
+        </span>
+
+				<button class="mt-auto self-end p text-blackk bg-primary text-whitee rounded-[10px] px-5 py-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">Aggiungi</button>
+
+			</div>
+
+
+		</div>
+
+
+	</div>
+{% endblock %}
