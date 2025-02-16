@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body_content %}
-	<div class="flex-wrap items-start lg:flex-row flex-col overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex p-[20px] gap-[20px] rounded-[40px] shadows  justify-start">
+	<div id="tasseContainer" class="flex-wrap items-start lg:flex-row flex-col overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex p-[20px] gap-[20px] rounded-[40px] shadows  justify-start">
 		{% set tasse = app.user.studente.tasse %}
 		{% for tassa in tasse %}
 			<div class="flex-col flex gap-5 bg-bg rounded-[30px] h-auto p-[20px] w-full lg:w-[450px]">
@@ -26,3 +26,8 @@
 		{% endfor %}
 	</div>
 {% endblock %}
+
+{% block javascripts_custom %}
+	 {{ parent() }}
+	 <script src="{{ asset("scripts/service/ajax/submitTasse.js") }}"></script>
+ {% endblock %}

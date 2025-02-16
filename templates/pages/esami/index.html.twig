@@ -13,7 +13,7 @@
 		<div class="flex flex-col basis-2/6 bg-transparent gap-4 ">
 			<!-- Superati -->
 			<p class="p text-grayy">Superati</p>
-			<div class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
+			<div id="superatiContainer" class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
 				{% for corso in corsi %}
 					{% if corso.stato.id == 3 %}
 						{% for esame in corso.esami %}
@@ -33,7 +33,7 @@
 		<div class="flex flex-col basis-5/6 bg-transparent gap-4">
 			<!-- Da Fare -->
 			<p class="p text-grayy">Da Fare</p>
-			<div class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
+			<div id="daFareContainer" class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
 				{% for corso in corsi | sort((a, b) => b.annoSvolgimento <=> a.annoSvolgimento) %}
 					{% if corso.stato.id != 3 %}
 						<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
@@ -61,6 +61,7 @@
 
 {% block javascripts_custom %}
 	{{ parent() }}
+	<script src="{{ asset("scripts/service/ajax/submitEsame.twig.js") }}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 	<script>
 
