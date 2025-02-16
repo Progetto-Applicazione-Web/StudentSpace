@@ -23,7 +23,7 @@ $(document).ready(function () {
         var card = '<div class="flex-col flex gap-5 bg-bg rounded-[30px] h-auto p-[20px] w-full lg:w-[450px]">';
         card += '  <span class="flex items-center justify-between">';
         card += '    <h2 class="heading-2 text-blackk !font-black">€ ' + importo + '</h2>';
-        card += '    <p class="p text-grayy">' + scadenza + '</p>';
+        card += '    <p class="p text-grayy"> Scade ' + scadenza + '</p>';
         card += '  </span>';
         card += '  <p class="p text-blackk">' + descrizione + '</p>';
         

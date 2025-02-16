@@ -60,8 +60,7 @@
 			<p class="p text-grayy">Programmati</p>
 			<div id="calendar" class="bg-bg rounded-[30px] h-full p-5"></div>
 		</div>
-
-
+		
 	</div>
 {% endblock %}
 
@@ -70,35 +69,19 @@
 	{{ parent() }}
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 	<script>
-
-		const initializeCalendar = () => {
-			const calendarEl = document.getElementById('calendar');
-			if (calendarEl) {
-				if (calendarEl._fullCalendar) {
-					calendarEl._fullCalendar.destroy(); // Distrugge eventuali istanze precedenti
-				}
-
-				const calendar = new FullCalendar.Calendar(calendarEl, {
-					initialView: 'dayGridMonth',
-					headerToolbar: {
-						start: 'title',
-						center: '',
-						end: 'prev,next',
-					},
-					height: 'full', // Ridimensiona automaticamente in base al contenitore
-				});
-
-				calendar.render();
-				calendarEl._fullCalendar = calendar; // Salva l'istanza per futuri utilizzi
-			}
-		};
-
-		// Inizializza il calendario quando il contenuto è caricato
-		document.addEventListener('DOMContentLoaded', initializeCalendar);
-
-		// Gestisce ricariche o cambiamenti di route
-		document.addEventListener('turbo:load', initializeCalendar);
-		document.addEventListener('routeChangeComplete', initializeCalendar);
+		document.addEventListener('DOMContentLoaded', function() {
+			var calendarEl = document.getElementById('calendar');
+			const calendar = new FullCalendar.Calendar(calendarEl, {
+				initialView: 'dayGridMonth',
+				headerToolbar: {
+					start: 'title',
+					center: '',
+					end: 'prev,next',
+				},
+				height: 'full',
+			});
+			calendar.render();
+		});
 	</script>
 
 	<script src="{{ asset('scripts/service/ajax/submitEsame.js') }}"></script>
