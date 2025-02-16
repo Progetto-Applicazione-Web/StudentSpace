@@ -7,7 +7,7 @@
     
 
 
-    
+    {# 
     <h1 class="text-red-500">Register</h1>
 		
 		    {{ form_errors(registrationForm) }}
@@ -23,21 +23,21 @@
 		
 		        <button type="submit" class="btn">Register</button>
 		    {{ form_end(registrationForm) }}
-		
+		#}
 
 
-
-	<div class="bg-bg flex flex-col h-full w-full items-center gap-5 justify-center">
-		<form class="shadows bg-whitee flex rounded-[20px] h-[500px] gap-10 p-10" action="{{ path('app_login') }}" method="post">
+<body class="flex bg-bg gap-[10px] md:h-screen h-full   w-full flex-col lg:flex-row lg:p-[20px]">
+	<div class="bg-bg flex flex-col h-full  w-full items-center gap-5 justify-center">
+		<form class="shadows bg-whitee flex flex-col lg:flex-row rounded-[20px] lg:max-h-[500px] w-full md:w-auto gap-10 p-10" action="{{ path('app_login') }}" method="post">
 
 
             <div class="flex flex-col h-full gap-10">
 			    <img class="max-w-[400px]" src="{{ asset('imgs/logo.svg') }}" alt="">
 
 
-                <div class="flex flex-row h-full gap-10">
+                <div class="flex md:flex-row flex-col h-full gap-3 lg:gap-10">
 
-                    <span class="flex flex-col justify-between">
+                    <span class="flex flex-col gap-y-3 justify-between">
                         <div class="flex flex-col">
                             <label class="p text-blackk " for="">🆔Matricola</label>
                             <input class="p text-grayy  rounded-[10px] p-5 outline-1 outline-[var(--bg-color)] focus:outline-3" type="number" id="username" name="_username" value="" required/>
@@ -56,10 +56,10 @@
 
                     </span>
 
-                    <div class="w-0 h-[250px] m-auto border-1 border-dotted br-bg"></div>
+                    <div class="w-0 h-[250px] hidden lg:block m-auto border-1 border-dotted br-bg"></div>
 
 
-                    <span class="flex flex-col justify-between">
+                    <span class="flex flex-col gap-y-3 justify-between">
 
                         <div class="flex flex-col">
                             <label class="p text-blackk " for="">👤Username</label>
@@ -80,7 +80,7 @@
             </div>
 
             <div class="flex flex-col gap-1 h-full">
-                <button class="p h-full flex  flex-col text-blackk justify-center items-center bg-primary text-whitee cursor-pointer rounded-[10px] p-10 transition-all duration-500 hover:brightness-120" type="submit"> <img class="w-[30px] aspect-square" src="{{ asset('icons/arrow-right.svg') }}"></img> Vai </button>
+                <button class="p h-full flex flex-row-reverse  lg:flex-col gap-3 lg:gap-0 text-blackk justify-center items-center bg-primary text-whitee cursor-pointer rounded-[10px] lg:p-10 p-5 transition-all duration-500 hover:brightness-120" type="submit"> <img class="w-[30px] aspect-square" src="{{ asset('icons/arrow-right.svg') }}"></img> Vai </button>
                 <a href="..\login" class="p text-primary text-center rounded-[10px] p-3 cursor-pointer hover:brightness-120 transition-all duration-500" >Login</a> 
             </div>  
 
@@ -93,5 +93,5 @@
     {% block javascripts_custom %}
       <script src="{{ asset("scripts/openEsse3.js") }}"></script>
     {% endblock %}
-
+</body>
 {% endblock body%}

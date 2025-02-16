@@ -30,8 +30,8 @@
 			{% endblock %}
 		{% endblock %}
 	</head>
+	{% block body %}
 	<body class="flex bg-bg gap-[10px] lg:h-screen h-full w-full flex-col lg:flex-row lg:p-[20px]">
-		{% block body %}
 			{% include 'components/sidebar.html.twig' %}
 			<div id="esse3Popup" class="popup-hidden z-50">{% include 'components/esse3popup.html.twig' %}</div>
 			
@@ -56,8 +56,8 @@
             <script src="{{ asset("scripts/openModal.js") }}"></script>
             <script src="{{ asset("scripts/editModal.js") }}"></script>
             <script src="{{ asset("scripts/openEsse3.js") }}"></script>
-        {% endblock %}
-        
 	</body>
+{% endblock %}
+        
 </html>
 

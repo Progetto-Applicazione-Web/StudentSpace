@@ -8,8 +8,9 @@
 			<p class="p p-2 animate-shake font-bold text-red-500">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
 		</div>
 	{% endif %}
+	<body class="flex bg-bg gap-[10px] h-screen  w-full flex-col lg:flex-row lg:p-[20px]">
 	<div class="bg-bg flex h-full w-full items-center justify-center">
-		<form class="shadows rounded-[20px] bg-whitee min-w-[500px] flex flex-col px-10 py-4" action="{{ path('app_login') }}" method="post">
+		<form class="shadows rounded-[20px] bg-whitee sm:w-[500px] w-full h-full sm:h-auto justify-center   sm:max-w-[500px] flex flex-col px-10 py-4" action="{{ path('app_login') }}" method="post">
 
 			<img class="my-10" src="{{ asset('imgs/logo.svg') }}" alt="">
 
@@ -21,15 +22,13 @@
 
 			<input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}"/>
 
-			<button class="p text-blackk bg-primary text-whitee rounded-[10px] p-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">👍Login</button>
+			<button class="p text-blackk bg-primary text-whitee rounded-[10px] p-3 cursor-pointer  hover:brightness-120 transition-all duration-500" type="submit">👍Login</button>
 			<p class="text-center mt-5 p text-grayy">or</p>
-			
+
 			<div class="flex gap-2 justify-center items-center">
-				<a href="{{ path('app_register') }}" class="p text-primary text-center rounded-[10px] p-3 cursor-pointer hover:brightness-120 transition-all duration-500">Register</a>
+				<a href="{{ path('app_register') }}" class="p text-primary text-center rounded-[10px]  p-3 cursor-pointer hover:brightness-120 transition-all duration-500">Register</a>
 			</div>
 		</form>
-
-
-		
+</body>
 
 	{% endblock %}
