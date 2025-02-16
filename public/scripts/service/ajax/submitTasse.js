@@ -34,16 +34,11 @@ $(document).ready(function () {
         }
         card += '</div>';
 
-        // Aggiungi la nuova card al container delle tasse
         $('#tasseContainer').append(card);
-
-        // Chiudi il modal e resetta il form
-        $('#modalTasse').fadeOut(300, function () {
-          $('#formAddTassa')[0].reset();
-        });
+        $('#formAddTassa')[0].reset();
       },
       error: function (response) {
-        alert('Errore nell\'aggiungere la tassa. Riprova.');
+        // TODO: Mettere sulla pagina un errore
       }
     });
   });

@@ -34,7 +34,9 @@ function addEsame($nome, $corso, $data_svolgimento, $accettazione, $voto) {
         success: function (response) {
             // TODO: Aggiungi esame
             // TODO: Chiudi modal
-            // TODO: Clear modals input
+
+            // Clear Form
+            $('#formAddEsame')[0].reset()
         },
         error: function (response) {
             // TODO:

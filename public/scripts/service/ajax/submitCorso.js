@@ -59,10 +59,8 @@ function addCorso($icona, $nome, $codice, $cfu, $docente, $anno_svolgimento, $st
             $corsi.append(nuovoCorso);
 
             // Chiudi il modal: nascondi il form, resetta gli input e poi lo mostra di nuovo
-            $('#formAddCorso').fadeOut(300, function () {
-                this.reset();
-                $(this).show();
-            });
+            $('#formAddCorso')[0].reset();
+
         },
         error: function (response) {
             alert('Errore nell\'aggiungere il corso. Riprova.');
