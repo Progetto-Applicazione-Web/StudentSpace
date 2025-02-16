@@ -7,25 +7,25 @@
 {% endblock %}
 
 {% block body_content %}
-	{% set corsi = app.user.studente.corsi %}
+	{% set corsi = app.user.studente.corsi | sort((a, b) => b.annoSvolgimento <=> a.annoSvolgimento) %}
 	<div class="flex-col-reverse overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex lg:flex-row p-[20px] gap-[20px] rounded-[40px] shadows justify-start">
 
 		<div class="flex flex-col basis-2/6 bg-transparent gap-4 ">
 			<!-- Superati -->
 			<p class="p text-grayy">Superati</p>
-			<div id="superatiContainer" class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
+			<div class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
 				{% for corso in corsi %}
-					{% if corso.stato.id == 3 %}
-						{% for esame in corso.esami %}
-							{% if esame.isAccettato and esame.isSuperato %}
-								<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
-									<h2 class="heading-2">{{ corso.nome | title }} </h2>
-									<h2 class="p">{{ corso.cfu }} CFU</h2>
-									<h2 class="heading-2">{{ esame.voto == "IDO"? "Idoneo" : esame.voto }}</h2>
-								</div>
-							{% endif %}
-						{% endfor %}
-					{% endif %}
+					{% for esame in corso.esami %}
+						{% set voto = esame.voto %}
+						{% set superato = (voto > 17 and voto < 32) %}
+						{% if esame.isAccettato %}
+							<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
+								<h2 class="heading-2">{{ esame.nome | title }} </h2>
+								<h2 class="p">{{ corso.icona }} {{ corso.nome }} ∙ {{ corso.cfu }} CFU</h2>
+								<h2 class="heading-2">{{ esame.voto == "IDO"? "Idoneo" : esame.voto }}</h2>
+							</div>
+						{% endif %}
+					{% endfor %}
 				{% endfor %}
 			</div>
 		</div>
@@ -33,16 +33,22 @@
 		<div class="flex flex-col basis-5/6 bg-transparent gap-4">
 			<!-- Da Fare -->
 			<p class="p text-grayy">Da Fare</p>
-			<div id="daFareContainer" class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
-				{% for corso in corsi | sort((a, b) => b.annoSvolgimento <=> a.annoSvolgimento) %}
-					{% if corso.stato.id != 3 %}
-						<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
-							<h2 class="heading-2">{{ corso.nome | title }} </h2>
-							<h2 class="p text-grayy">{{ corso.cfu }} CFU</h2>
+			<div id="esami_dafare" class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
+				{% for esame in app.user.studente.esami | sort((a, b) => (a.dataSvolgimento) <=> (b.dataSvolgimento)) %}
+					{% set voto = esame.voto %}
+					{% set is_dafare = ((esame.dataSvolgimento >= date_now or esame.dataSvolgimento == "") and (not esame.isAccettato)) %}
+					{% if (is_dafare) %}
+						<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk" data-esame-id="{{ esame.id }}">
+							<h2 class="heading-2">{{ esame.nome | title }} </h2>
+							<h2 class="p text-grayy">{{ esame.corso.icona }} {{ esame.corso.nome }} ∙ {{ esame.corso.cfu }} CFU</h2>
+							{% if esame.dataSvolgimento == "" %}
+								Non Pianificato
+							{% else %}
+								{{ esame.dataSvolgimento == date_now ?  'Oggi': esame.dataSvolgimento == date_tomorrow ? "Domani" : (esame.dataSvolgimento == date_yesterday)}}
+							{% endif %}
 							<span class="flex gap-4">
-								<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]">Programma</button>
-								<button class="p text-secondary">Dettagli</button>
-							</span>
+									<button class="p bg-primary text-whitee px-[20px] py-[10px] rounded-[10px]" data-esame-id="{{ esame.id }}">Modifica</button>
+								</span>
 						</div>
 					{% endif %}
 				{% endfor %}
@@ -60,8 +66,8 @@
 {% endblock %}
 
 {% block javascripts_custom %}
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	{{ parent() }}
-	<script src="{{ asset("scripts/service/ajax/submitEsame.twig.js") }}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 	<script>
 
@@ -93,7 +99,7 @@
 		// Gestisce ricariche o cambiamenti di route
 		document.addEventListener('turbo:load', initializeCalendar);
 		document.addEventListener('routeChangeComplete', initializeCalendar);
-
-
 	</script>
+
+	<script src="{{ asset('scripts/service/ajax/submitEsame.js') }}"></script>
 {% endblock %}

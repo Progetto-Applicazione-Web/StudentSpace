@@ -19,13 +19,13 @@ class Tassa
     private ?Studente $studente = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $importo = null;
+    private ?string $importo = "0.00";
 
     #[ORM\Column(length: 10)]
-    private ?string $dataScadenza = null;
+    private ?string $dataScadenza = "";
 
     #[ORM\Column(length: 10, nullable: true)]
-    private ?string $dataPagamento = null;
+    private ?string $dataPagamento = "";
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $descrizione = null;
@@ -115,7 +115,7 @@ class Tassa
 
     public function hasFattId(): bool
     {
-        return isset($this->fattId);
+        return $this->fattId !== null;
     }
 
     public function isPagato(): ?bool

@@ -3,10 +3,10 @@ $(document).ready(function () {
     event.preventDefault();
 
     var importo = $('#importo').val();
-    var scadenza = $('#scadenza').val();
+    var scadenza = new Date($('#scadenza').val()).toLocaleDateString('it-IT');
     var descrizione = $('#descrizione').val();
     var pagato = $('#pagato').is(':checked');
-    var dataPagamento = $('#dataPagamento').val();
+    var dataPagamento = new Date($('#dataPagamento').val()).toLocaleDateString('it-IT');
 
     $.ajax({
       url: '/tasse/add',
@@ -25,11 +25,10 @@ $(document).ready(function () {
         card += '    <h2 class="heading-2 text-blackk !font-black">€ ' + importo + '</h2>';
         card += '    <p class="p text-grayy">' + scadenza + '</p>';
         card += '  </span>';
-        card += '  <p class="p text-blackk">€ ' + descrizione + '</p>';
+        card += '  <p class="p text-blackk">' + descrizione + '</p>';
         
         if (pagato) {
           card += '  <p class="p text-grayy">Pagato il: ' + dataPagamento + '</p>';
-          card += '  <a href="https://didattica.unicam.it/auth/studente/Tasse/FatturaDettaglio.do?fatt_id=' + (response.fattId || '') + '" class="bg-primary px-[20px] py-[15px] hover:brightness-110 active:brightness-75 transition-all w-full text-whitee p font-black rounded-[20px]" target="_blank">Paga da Esse3</a>';
         } else {
           card += '  <a class="bg-primary px-[20px] py-[15px] hover:brightness-110 active:brightness-75 transition-all w-full text-whitee p font-black rounded-[20px]">Paga</a>';
         }

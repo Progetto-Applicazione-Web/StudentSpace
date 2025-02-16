@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <div class="hidden absolute" id="modalCorsi">{% include 'pages/corsi/modal.html.twig' %}</div>
     <div class="hidden absolute" id="modalEditCorsi">{% include 'pages/corsi/modalEdit.html.twig' %}</div>
     {{ parent() }}
@@ -30,5 +31,5 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     {{ parent() }}
 
-    <script src="{{ asset('scripts/service/ajax/submitCorso.twig.js') }}"></script>
+    <script src="{{ asset('scripts/service/ajax/submitCorso.js') }}"></script>
 {% endblock %}

@@ -58,7 +58,6 @@ class CorsiController extends AbstractController
         if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
 
         $icona = $request->request->get("icona");
-        //if (strlen($icona)) return new JsonResponse(HttpError::BAD_REQUEST->getWithCustomMessage("L'icona non puo' superare 2 caratteri di lunghezza"));
 
         $nome = strip_tags($request->request->get("nome"));
         $codice = strip_tags($request->request->get("codice"));
@@ -122,7 +121,7 @@ class CorsiController extends AbstractController
         $corso = $this->entityManager->getRepository(Corso::class)->getCorsoById($id);
 
         if ($corso == null) {
-            return new JsonResponse(HttpError::NOT_FOUNT->getWithCustomMessage("corsi/edit?id=$id"));
+            return new JsonResponse(HttpError::NOT_FOUNT->getWithCustomMessage("Non trovato corsi/edit?id=$id"));
         }
 
         if ($nome != null) $corso->setNome($nome);

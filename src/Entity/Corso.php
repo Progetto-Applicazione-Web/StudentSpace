@@ -141,22 +141,22 @@ class Corso
         return $this->esami;
     }
 
-    public function addEsami(Esame $esami): static
+    public function addEsame(Esame $esame): static
     {
-        if (!$this->esami->contains($esami)) {
-            $this->esami->add($esami);
-            $esami->setCorso($this);
+        if (!$this->esami->contains($esame)) {
+            $this->esami->add($esame);
+            $esame->setCorso($this);
         }
 
         return $this;
     }
 
-    public function removeEsami(Esame $esami): static
+    public function removeEsame(Esame $esame): static
     {
-        if ($this->esami->removeElement($esami)) {
+        if ($this->esami->removeElement($esame)) {
             // set the owning side to null (unless already changed)
-            if ($esami->getCorso() === $this) {
-                $esami->setCorso(null);
+            if ($esame->getCorso() === $this) {
+                $esame->setCorso(null);
             }
         }
 

@@ -18,7 +18,7 @@ class Esame
     #[ORM\JoinColumn(nullable: false)]
     private ?Studente $studente = null;
 
-    #[ORM\Column(length: 10)]
+    #[ORM\Column(length: 10, nullable: true)]
     private ?string $dataSvolgimento = "";
 
     #[ORM\ManyToOne(inversedBy: 'esami')]
@@ -26,15 +26,13 @@ class Esame
     private ?Corso $corso = null;
 
     #[ORM\Column(length: 3, nullable: true)]
-    private ?string $voto = null;
+    private ?int $voto = 17;
 
-    #[ORM\Column]
-    private ?bool $superato = false;
     #[ORM\Column]
     private ?bool $accettato = false;
 
-    #[ORM\Column(length: 10, nullable: true)]
-    private ?string $dataPianificata = "";
+    #[ORM\Column(length: 255)]
+    private ?string $nome = null;
 
     public function getId(): ?int
     {
@@ -49,7 +47,6 @@ class Esame
     public function setStudente(?Studente $studente): static
     {
         $this->studente = $studente;
-
         return $this;
     }
 
@@ -61,7 +58,6 @@ class Esame
     public function setDataSvolgimento(string $dataSvolgimento): static
     {
         $this->dataSvolgimento = $dataSvolgimento;
-
         return $this;
     }
 
@@ -73,7 +69,6 @@ class Esame
     public function setCorso(?Corso $corso): static
     {
         $this->corso = $corso;
-
         return $this;
     }
 
@@ -89,17 +84,6 @@ class Esame
         return $this;
     }
 
-    public function isSuperato(): ?bool
-    {
-        return $this->superato;
-    }
-
-    public function setSuperato(bool $superato): static
-    {
-        $this->accettato = $superato;
-        return $this;
-    }
-
     public function isAccettato(): ?bool
     {
         return $this->accettato;
@@ -110,31 +94,30 @@ class Esame
      */
     public function setAccettato(bool $accettato): static
     {
-        if (!$this->isSuperato()) throw new Exception("Non puo' essere accettato se non è superato!");
         $this->accettato = $accettato;
         return $this;
     }
+
 
     public function toArray(): array
     {
         return [
             'id' => $this->id,
             'data_svolgimento' => $this->dataSvolgimento,
-            'data_pianificata' => $this->dataPianificata,
             'corso' => $this->corso->getId(),
             'voto' => $this->voto,
             'accettato' => $this->accettato,
         ];
     }
 
-    public function getDataPianificata(): ?string
+    public function getNome(): ?string
     {
-        return $this->dataPianificata;
+        return $this->nome;
     }
 
-    public function setDataPianificata(?string $data_pianificata): static
+    public function setNome(string $nome): static
     {
-        $this->dataPianificata = $data_pianificata;
+        $this->nome = $nome;
 
         return $this;
     }

@@ -14,61 +14,17 @@
 				<p class="p text-grayy">In Arrivo</p>
 
 				<div class="flex gap-2 overflow-x-scroll scrollbar-none ">
-					<div class="bg-secondary  text-whitee rounded-[20px] flex flex-col gap-2 h-auto p-[20px]">
-						<p class="p font-black text-nowrap">🧑‍💻 Programmazione</p>
-						<p class="p">Domani</p>
-					</div>
-
-					<div class="bg-whitee br-bg text-blackk border-2 rounded-[20px] flex flex-col gap-2 h-auto p-[20px] shrink-0">
-						<p class="p font-black">🧑‍💻 Esame</p>
-						<p class="p text-grayy">Domani</p>
-					</div>
-
-					<div class="bg-whitee br-bg text-blackk border-2 rounded-[20px] flex flex-col gap-2 h-auto p-[20px] shrink-0">
-						<p class="p font-black">🧑‍💻 Esame</p>
-						<p class="p text-grayy">Domani</p>
-					</div>
-
-					<div class="bg-whitee br-bg text-blackk border-2 rounded-[20px] flex flex-col gap-2 h-auto p-[20px] shrink-0">
-						<p class="p font-black">🧑‍💻 Esame</p>
-						<p class="p text-grayy">Domani</p>
-					</div>
-
-					<div class="bg-whitee br-bg text-blackk border-2 rounded-[20px] flex flex-col gap-2 h-auto p-[20px] shrink-0">
-						<p class="p font-black">🧑‍💻 Esame</p>
-						<p class="p text-grayy">Domani</p>
-					</div>
-
-					<div class="bg-whitee br-bg text-blackk border-2 rounded-[20px] flex flex-col gap-2 h-auto p-[20px] shrink-0">
-						<p class="p font-black">🧑‍💻 Esame</p>
-						<p class="p text-grayy">Domani</p>
-					</div>
-
-					<div class="bg-whitee br-bg text-blackk border-2 rounded-[20px] flex flex-col gap-2 h-auto p-[20px] shrink-0">
-						<p class="p font-black">🧑‍💻 Esame</p>
-						<p class="p text-grayy">Domani</p>
-					</div>
-
-					<div class="bg-whitee br-bg text-blackk border-2 rounded-[20px] flex flex-col gap-2 h-auto p-[20px] shrink-0">
-						<p class="p font-black">🧑‍💻 Esame</p>
-						<p class="p text-grayy">Domani</p>
-					</div>
-
-					<div class="bg-whitee br-bg text-blackk border-2 rounded-[20px] flex flex-col gap-2 h-auto p-[20px] shrink-0">
-						<p class="p font-black">🧑‍💻 Esame</p>
-						<p class="p text-grayy">Domani</p>
-					</div>
-
-					<div class="bg-whitee br-bg text-blackk border-2 rounded-[20px] flex flex-col gap-2 h-auto p-[20px] shrink-0">
-						<p class="p font-black">🧑‍💻 Esame</p>
-						<p class="p text-grayy">Domani</p>
-					</div>
-
-					<div class="bg-whitee br-bg text-blackk border-2 rounded-[20px] flex flex-col gap-2 h-auto p-[20px] shrink-0">
-						<p class="p font-black">🧑‍💻 Esame</p>
-						<p class="p text-grayy">Domani</p>
-					</div>
-
+					{% for esame in app.user.studente.esami | sort((a, b) => (a.dataSvolgimento) <=> (b.dataSvolgimento)) %}
+						{% set is_dafare = (esame.dataSvolgimento >= date_now and (not esame.isAccettato)) %}
+						{% if is_dafare %}
+							<div class="bg-secondary  text-whitee rounded-[20px] flex flex-col gap-2 h-auto p-[20px]">
+								<p class="p font-black text-nowrap">{{esame.corso.icona}} {{ esame.nome }}</p>
+								<p class="p">
+									{{ esame.dataSvolgimento == date_now ?  'Oggi': esame.dataSvolgimento == date_tomorrow ? "Domani" : esame.dataSvolgimento}}
+								</p>
+							</div>
+						{% endif %}
+					{% endfor %}
 				</div>
 
 			</div>
