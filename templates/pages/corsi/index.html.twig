@@ -9,7 +9,7 @@
 {% block body_content %}
     {% set icona_superato = asset("icons/ok-circle.svg") %}
     <div id="corsi" data-superato-icon-url="{{ icona_superato }}" class="overflow-x-hidden overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex  flex-col p-[20px] gap-[20px] rounded-[40px] shadows justify-start">
-        {% for corso in app.user.studente.corsi | sort((a, b) => b.annoSvolgimento <=> a.annoSvolgimento) | sort((a, b) => a.isCompletato <=> b.isCompletato) %}
+        {% for corso in app.user.studente.corsi | sort((a, b) => b.annoSvolgimento <=> a.annoSvolgimento) | sort((a, b) => (a.stato.id == 3) <=> (b.stato.id == 3)) %}
             <div class="flex items-center justify-between px-[30px] py-[20px] border-2 br-bg rounded-[30px]"> <!-- Item Corsi -->
                 <div class="flex items-center gap-5">
                     <p class="heading-1">{{ corso.icona }}</p>

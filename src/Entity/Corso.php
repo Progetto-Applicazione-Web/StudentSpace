@@ -175,15 +175,6 @@ class Corso
         return $this;
     }
 
-    public function isCompletato(): bool
-    {
-        $esami = $this->getEsami();
-        if ($esami->isEmpty()) return false;
-        foreach ($esami as $esame) if ($esame->isAccettato()) return true;
-
-        return false;
-    }
-
     public function toArray(): array
     {
         return [

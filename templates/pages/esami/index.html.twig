@@ -7,16 +7,17 @@
 {% endblock %}
 
 {% block body_content %}
+	{% set corsi = app.user.studente.corsi %}
 	<div class="flex-col-reverse overflow-y-scroll scrollbar-none w-full h-full bg-whitee flex lg:flex-row p-[20px] gap-[20px] rounded-[40px] shadows justify-start">
 
 		<div class="flex flex-col basis-2/6 bg-transparent gap-4 ">
 			<!-- Superati -->
 			<p class="p text-grayy">Superati</p>
 			<div class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
-				{% for corso in app.user.studente.corsi %}
-					{% if corso.isCompletato %}
+				{% for corso in corsi %}
+					{% if corso.stato.id == 3 %}
 						{% for esame in corso.esami %}
-							{% if esame.isAccettato %}
+							{% if esame.isAccettato and esame.isSuperato %}
 								<div class="flex flex-col bg-secondary p-[20px] rounded-[20px] gap-1 text-whitee">
 									<h2 class="heading-2">{{ corso.nome | title }} </h2>
 									<h2 class="p">{{ corso.cfu }} CFU</h2>
@@ -33,8 +34,8 @@
 			<!-- Da Fare -->
 			<p class="p text-grayy">Da Fare</p>
 			<div class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
-				{% for corso in app.user.studente.corsi | sort((a, b) => b.annoSvolgimento <=> a.annoSvolgimento) %}
-					{% if not corso.isCompletato %}
+				{% for corso in corsi | sort((a, b) => b.annoSvolgimento <=> a.annoSvolgimento) %}
+					{% if corso.stato.id != 3 %}
 						<div class="flex flex-col bg-whitee p-[20px] border-2 br-bg rounded-[20px] gap-3 text-blackk">
 							<h2 class="heading-2">{{ corso.nome | title }} </h2>
 							<h2 class="p text-grayy">{{ corso.cfu }} CFU</h2>

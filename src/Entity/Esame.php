@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EsameRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 #[ORM\Entity(repositoryClass: EsameRepository::class)]
 class Esame
@@ -18,7 +19,7 @@ class Esame
     private ?Studente $studente = null;
 
     #[ORM\Column(length: 10)]
-    private ?string $dataSvolgimento = null;
+    private ?string $dataSvolgimento = "";
 
     #[ORM\ManyToOne(inversedBy: 'esami')]
     #[ORM\JoinColumn(nullable: false)]
@@ -28,7 +29,12 @@ class Esame
     private ?string $voto = null;
 
     #[ORM\Column]
-    private ?bool $accettato = null;
+    private ?bool $superato = false;
+    #[ORM\Column]
+    private ?bool $accettato = false;
+
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $dataPianificata = "";
 
     public function getId(): ?int
     {
@@ -83,25 +89,53 @@ class Esame
         return $this;
     }
 
+    public function isSuperato(): ?bool
+    {
+        return $this->superato;
+    }
+
+    public function setSuperato(bool $superato): static
+    {
+        $this->accettato = $superato;
+        return $this;
+    }
+
     public function isAccettato(): ?bool
     {
         return $this->accettato;
     }
 
+    /**
+     * @throws Exception
+     */
     public function setAccettato(bool $accettato): static
     {
-       $this->accettato = $accettato;
+        if (!$this->isSuperato()) throw new Exception("Non puo' essere accettato se non è superato!");
+        $this->accettato = $accettato;
         return $this;
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'id' => $this->id,
             'data_svolgimento' => $this->dataSvolgimento,
+            'data_pianificata' => $this->dataPianificata,
             'corso' => $this->corso->getId(),
             'voto' => $this->voto,
             'accettato' => $this->accettato,
         ];
+    }
+
+    public function getDataPianificata(): ?string
+    {
+        return $this->dataPianificata;
+    }
+
+    public function setDataPianificata(?string $data_pianificata): static
+    {
+        $this->dataPianificata = $data_pianificata;
+
+        return $this;
     }
 }

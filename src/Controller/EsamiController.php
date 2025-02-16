@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Corso;
 use App\Entity\Esame;
 use App\HttpUtils\HttpError;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
@@ -28,6 +28,20 @@ class EsamiController extends AbstractController
 
         return $this->render('pages/esami/index.html.twig', [
             'controller_name' => 'EsamiController',
+        ]);
+    }
+
+    #[Route('/esami/add', name: 'api_add_esame')]
+    public function add(
+        Request $request,
+    ): JsonResponse
+    {
+        if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse([]);
+
+
+
+        return new JsonResponse([
+
         ]);
     }
 

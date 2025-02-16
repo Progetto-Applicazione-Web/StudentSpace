@@ -17,11 +17,9 @@
 
 				<p class="w-full p text-grayy font-bold">Corso di
 					<select class="font-normal">
-						<option>Matematica Generale</option>
-						<option>Corso 2</option>
-						<option>Corso 3</option>
-						<option>Corso 4</option>
-						<option>Corso 5</option>
+						{% for corso in app.user.studente.corsi %}
+							<option value="{{ corso.id }}">{{ corso.icona }} {{ corso.nome }}</option>
+						{% endfor %}
 					</select>
 				</p>
 

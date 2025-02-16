@@ -47,10 +47,10 @@
 					<option>5°</option>
 				</select></p>
 				<span class="p bg-secondary px-4 py-1 w-auto text-whitee rounded-[8px]">
-					<select disabled>
-						<option>Superato</option>
-						<option>Da Dare</option>
-						<option>Attesa Esito</option>
+					<select id="stato">
+						{% for stato in stati_possibili_corso %}
+							<option value="{{ stato.id }}"> {{ stato.nome }} </option>
+						{% endfor %}
 					</select>
 				</span>
 			</div>
@@ -58,14 +58,8 @@
 				<p class="p text-blackk w-full"><textarea disabled class="w-full min-h-[300px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Descrizione" ></textarea></p>
 			</div>
 
-			
-
 		</div>
-
-
 	</div>
-	
-
 
 </div>
 {% endblock %}
