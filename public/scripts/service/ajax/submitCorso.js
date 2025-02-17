@@ -115,10 +115,19 @@ function editCorso($id, $icona, $nome, $codice, $docente, $anno_svolgimento, $cf
             note: $note,
         },
         success: function (response) {
-            // TODO: Edit on DOM
+            let $corsoElemento = $('div[data-corso-id="' + $id + '"]');
+            $corsoElemento.find('.heading-1').text($icona);
+            $corsoElemento.find('.heading-2').text($nome);
+            $corsoElemento.find('.p').text($docente + " - " + $anno_svolgimento + "° Anno");
+
+            if ($stato_id == 3) {
+                // Inserisci l'immagine per "superato"
+                $corsoElemento.append('<img src="'+$('#corsi').attr('data-superato-icon-url')+'" alt="icona superato">');
+            }
+
         },
         error: function (response) {
-            alert('Errore nella modifica del corso. Riprova.');
+
         }
     });
 }
@@ -150,17 +159,54 @@ $(document).ready(function () {
             console.error("Errore:", error);
         }
     });
+
+    $('#formEditCorso').on('submit', function (event) {
+        event.preventDefault();
+        var $id = $("#editSalva").attr('data-corso-id');
+        var $icona = $('#iconaEdit').val();
+        var $nome = $('#nomeEdit').val();
+        var $codice = $('#codiceEdit').val();
+        var $cfu = $('#cfuEdit').val();
+        var $docente = $('#docenteEdit').val();
+        var $anno_svolgimento = $('#anno_svolgimentoEdit').val();
+        var $stato_id = $('#statoEdit').val();
+        var $note = $('#noteEdit').val();
+
+
+        // Controlla se uno dei campi obbligatori è vuoto
+        if (!$icona || !$nome || !$codice || !$cfu || !$docente || !$anno_svolgimento || !$stato_id) {
+            return; // Interrompe l'esecuzione se manca qualche dato
+        }
+
+        editCorso(
+            $id,
+            $icona,
+            $nome,
+            $codice,
+            $docente,
+            $anno_svolgimento,
+            $cfu,
+            $stato_id,
+            $note
+        );
+    });
 });
 
 const toggleModalEdit = ($id, $icona, $nome, $codice, $docente, $anno_svolgimento, $cfu, $stato_id, $note) => {
     console.log($id, $icona, $nome, $codice, $docente, $anno_svolgimento, $cfu, $stato_id, $note);
     $('#modalEditCorsi').toggleClass('open');
 
-    $("#iconaEdit").attr("value", $icona);
-    $("#nomeEdit").attr("value", $nome);
-    $("#anno_svolgimentoEdit").attr("value", $anno_svolgimento);
-    $("#docenteEdit").attr("value", $docente);
-    $("#codiceEdit").attr("value", $codice);
+    $("#editSalva").attr("data-corso-id", $id);
+    $("#iconaEdit").val($icona);
+    $("#nomeEdit").val($nome);
+    $("#codiceEdit").val($codice);
+    $("#docenteEdit").val( $docente);
+    $('#anno_svolgimentoEdit').val($anno_svolgimento);
+    $("#cfuEdit").val($cfu);
+    $("#statoEdit").val($stato_id);
+    $("#noteEdit").val($note);
+
+
 
 };
 

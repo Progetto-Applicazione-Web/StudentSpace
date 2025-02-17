@@ -20,7 +20,7 @@
 			<span class="flex justify-between items-center w-full">
 			<span class="flex gap-4">
 				<p class="p text-primary font-bold cursor-pointer   modificaButton">Modifica</p>
-				<p class="p text-primary font-bold cursor-pointer   SalvaButton">Salva</p>
+				<button id="editSalva" class="p text-primary font-bold cursor-pointer   SalvaButton" data-corso-id="" type="submit">Salva</button>
 				<!--<p class="p text-red-400 font-bold cursor-pointer  eliminaButton">Elimina</p>-->
 			</span>
 				<img class="modalEditCorsiButton aspect-square h-[30px] cursor-pointer" src="{{ asset('icons/close.svg') }}" alt="Chiudi">
@@ -30,24 +30,28 @@
 				<input id="iconaEdit" disabled placeholder="📖" type="text" maxlength="2" class="w-[60px] rounded-[10px]">
 				<input id="nomeEdit" disabled placeholder="Nome" type="text" class=" rounded-[10px]"></h1>
 			<div class="flex w-full flex-col gap-2 items-start">
-				<p class="w-full p text-grayy"><input disabled type="text" class="rounded-[10px]" placeholder="Codice Corso"></p>
-				<p class="w-full p text-grayy">CFU: <input disabled type="number" min="1" max="12" class=" rounded-[10px]"></p>
+				<p class="w-full p text-grayy">
+					<input id="codiceEdit" disabled type="text" class="rounded-[10px]" placeholder="Codice Corso">
+				</p>
+				<p class="w-full p text-grayy">CFU:
+					<input id="cfuEdit" disabled type="number" min="1" max="12" class=" rounded-[10px]">
+				</p>
 
-
-				<p class="w-full p text-grayy"><input disabled placeholder="Docenti" type="text" class=" rounded-[10px]" placeholder="Codice Corso"></p>
-
-
+				<p class="w-full p text-grayy">
+					<input id="docenteEdit" disabled placeholder="Docenti" type="text" class=" rounded-[10px]" placeholder="Codice Corso">
+				</p>
 
 				<p class="p text-grayy">Anno
 				<select id="anno_svolgimentoEdit" disabled>
-					<option>1°</option>
-					<option>2°</option>
-					<option>3°</option>
-					<option>4°</option>
-					<option>5°</option>
-				</select></p>
+					<option value="1">1°</option>
+					<option value="2">2°</option>
+					<option value="3">3°</option>
+					<option value="4">4°</option>
+					<option value="5">5°</option>
+				</select>
+				</p>
 				<span class="p bg-secondary px-4 py-1 w-auto text-whitee rounded-[8px]">
-					<select id="stato">
+					<select id="statoEdit">
 						{% for stato in stati_possibili_corso %}
 							<option value="{{ stato.id }}"> {{ stato.nome }} </option>
 						{% endfor %}
@@ -55,7 +59,8 @@
 				</span>
 			</div>
 			<div class="overflow-y-scroll scrollbar-none mt-5 h-full w-full">
-				<p class="p text-blackk w-full"><textarea disabled class="w-full min-h-[300px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Descrizione" ></textarea></p>
+				<p class="p text-blackk w-full">
+					<textarea id="noteEdit" disabled class="w-full min-h-[300px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Descrizione" ></textarea></p>
 			</div>
 
 		</div>
