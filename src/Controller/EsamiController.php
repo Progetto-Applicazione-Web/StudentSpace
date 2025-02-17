@@ -106,11 +106,16 @@ class EsamiController extends AbstractController
         $esami = $studente->getEsami();
 
         foreach ($esami as $esame) {
-            $eventi[] = [
-                "title" => $esame->getNome(),
-                'start' => DateTime::createFromFormat('d/m/Y', $esame->getDataSvolgimento())->format('Y-m-d'),
-                'allDay' => true
-            ];
+            if ($esame->getDataSvolgimento() != "") {
+                $dataSvolgimento = $esame->getDataSvolgimento();
+                $dateTime = DateTime::createFromFormat('d/m/Y', $dataSvolgimento);
+
+                $eventi[] = [
+                    "title" => $esame->getCorso()->getIcona().$esame->getNome(),
+                    'start' => $dateTime->format('Y-m-d'),
+                    'allDay' => true
+                ];
+            }
         }
 
         return new JsonResponse($eventi);
