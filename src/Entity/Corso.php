@@ -179,11 +179,13 @@ class Corso
     {
         return [
             'id' => $this->id,
+            'icona' => $this->icona,
             'nome' => $this->nome,
             'codice' => $this->codice,
             'docente' => $this->docente,
             'note' => $this->note,
             'anno_svolgimento' => $this->annoSvolgimento,
+            'stato_id' => $this->stato->getId(),
             'esami' => array_map(fn($esame) => $esame->toArray(), $this->esami->toArray()),
             'cfu' => $this->cfu
         ];

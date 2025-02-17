@@ -20,9 +20,6 @@ $(document).ready(function () {
     $('#icona, #nome, #codice, #cfu, #docente, #anno_svolgimento, #stato').on('keyup change', checkFields);
 
 
-
-
-
     $('#formAddCorso').on('submit', function (event) {
         event.preventDefault();
 
@@ -43,31 +40,6 @@ $(document).ready(function () {
         }
 
         addCorso(
-            $icona,
-            $nome,
-            $codice,
-            $cfu,
-            $docente,
-            $anno_svolgimento,
-            $stato_id,
-            $note
-        );
-    });
-
-    $('#formEditCorso').on('submit', function (event) {
-        event.preventDefault();
-
-        var $id = $('#icona').val();
-        var $icona = $('#icona').val();
-        var $nome = $('#nome').val();
-        var $codice = $('#codice').val();
-        var $cfu = $('#cfu').val();
-        var $docente = $('#docente').val();
-        var $anno_svolgimento = $('#anno_svolgimento').val();
-        var $stato_id = $('#stato').val();
-        var $note = $('#note').val();
-
-        editCorso(
             $icona,
             $nome,
             $codice,
@@ -127,7 +99,7 @@ function addCorso($icona, $nome, $codice, $cfu, $docente, $anno_svolgimento, $st
     });
 }
 
-function editCorso($id, $icona, $nome, $codice, $cfu, $docente, $anno_svolgimento, $stato_id, $note) {
+function editCorso($id, $icona, $nome, $codice, $docente, $anno_svolgimento, $cfu, $stato_id, $note) {
     $.ajax({
         url: '/corsi/edit',
         type: 'POST',
@@ -172,8 +144,7 @@ $(document).ready(function () {
             let response = await fetch(`/corsi/get?id=${corsoId}`);
             if (!response.ok) throw new Error("Errore nel recupero dati");
             let corso = await response.json();
-
-            toggleModalEdit(corso.id, corso.nome, corso.cfu, corso.docente, corso.annoSvolgimento, corso.stato, corso.note);
+            toggleModalEdit(corso.id, corso.icona, corso.nome, corso.codice, corso.docente, corso.anno_svolgimento, corso.cfu, corso.stato_id, corso.note);
 
         } catch (error) {
             console.error("Errore:", error);
@@ -181,10 +152,10 @@ $(document).ready(function () {
     });
 });
 
-const toggleModalEdit = ($id,$nome, $codice, $cfu, $docente, $annoSvolgimento, $stato, $note) => {
-    console.log($id, $nome, $cfu);
+const toggleModalEdit = ($id, $icona, $nome, $codice, $docente, $anno_svolgimento, $cfu, $stato_id, $note) => {
+    console.log($id, $icona, $nome, $codice, $docente, $anno_svolgimento, $cfu, $stato_id);
     $('#modalEditCorsi').toggleClass('open');
-    //$('#modalEditCorsi')
+
 };
 
 
