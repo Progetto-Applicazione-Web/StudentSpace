@@ -1,7 +1,6 @@
 {% block modal %}
-
 	<div class="hidden confirm-popup  justify-center items-center z-50 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
-	
+
 		<div class="flex flex-col gap-5 h-auto max-w-[400px] p-10 bg-whitee rounded-[30px] ">
 			<span>
 				<h1 class="heading-1 text-blackk">Sicuro?</h1>
@@ -13,12 +12,10 @@
 			</span>
 
 		</div>
-	
+
 	</div>
 
-
-
-	<div class="inputParent flex justify-center items-center z-40 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
+	<form id="formEditCorso" class="inputParent flex justify-center items-center z-40 absolute w-screen h-screen bg-[#46475ad3] m-[-20px]">
 		<div class="p-[30px] flex items-start flex-col gap-3 rounded-[30px] bg-whitee aspect-video h-3/4 ">
 			<span class="flex justify-between items-center w-full">
 			<span class="flex gap-4">
@@ -36,7 +33,7 @@
 
 				<p class="w-full p text-grayy"><input disabled placeholder="Docenti" type="text" class=" rounded-[10px]" placeholder="Codice Corso"></p>
 
-				
+
 
 				<p class="p text-grayy">Anno
 				<select disabled>
@@ -59,7 +56,5 @@
 			</div>
 
 		</div>
-	</div>
-
-</div>
+	</form>
 {% endblock %}

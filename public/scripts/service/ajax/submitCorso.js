@@ -53,6 +53,31 @@ $(document).ready(function () {
             $note
         );
     });
+
+    $('#formEditCorso').on('submit', function (event) {
+        event.preventDefault();
+
+        var $id = $('#icona').val();
+        var $icona = $('#icona').val();
+        var $nome = $('#nome').val();
+        var $codice = $('#codice').val();
+        var $cfu = $('#cfu').val();
+        var $docente = $('#docente').val();
+        var $anno_svolgimento = $('#anno_svolgimento').val();
+        var $stato_id = $('#stato').val();
+        var $note = $('#note').val();
+
+        editCorso(
+            $icona,
+            $nome,
+            $codice,
+            $cfu,
+            $docente,
+            $anno_svolgimento,
+            $stato_id,
+            $note
+        );
+    });
 });
 
 function addCorso($icona, $nome, $codice, $cfu, $docente, $anno_svolgimento, $stato_id, $note) {
@@ -81,8 +106,8 @@ function addCorso($icona, $nome, $codice, $cfu, $docente, $anno_svolgimento, $st
             nuovoCorso += '          <p class="p text-grayy">' + $docente + ' - ' + $anno_svolgimento + '° Anno</p>';
             nuovoCorso += '      </div>';
             nuovoCorso += '  </div>';
-            if ($stato_id == 3 || $stato_id === "3") { 
-                nuovoCorso += '  <img src="' + $corsi.attr("data-superato-icon-url") + '" alt="icona">';  
+            if ($stato_id == 3 || $stato_id === "3") {
+                nuovoCorso += '  <img src="' + $corsi.attr("data-superato-icon-url") + '" alt="icona">';
             }
             nuovoCorso += '</div>';
 
@@ -101,3 +126,69 @@ function addCorso($icona, $nome, $codice, $cfu, $docente, $anno_svolgimento, $st
         }
     });
 }
+
+function editCorso($id, $icona, $nome, $codice, $cfu, $docente, $anno_svolgimento, $stato_id, $note) {
+    $.ajax({
+        url: '/corsi/edit',
+        type: 'POST',
+        data: {
+            id: $id,
+            icona: $icona,
+            nome: $nome,
+            codice: $codice,
+            cfu: $cfu,
+            docente: $docente,
+            anno_svolgimento: $anno_svolgimento,
+            stato_id: $stato_id,
+            note: $note,
+        },
+        success: function (response) {
+            // TODO: Edit on DOM
+        },
+        error: function (response) {
+            alert('Errore nella modifica del corso. Riprova.');
+        }
+    });
+}
+
+(function () {
+    const modalCorsiButton = document.querySelectorAll('.modalCorsiButton');
+    const modalCorsi = document.getElementById('modalCorsi');
+
+    const toggleModal2 = () => {
+        console.log("Check");
+        modalCorsi.classList.toggle('open');
+    };
+
+    modalCorsiButton.forEach(button => {
+        button.addEventListener('click', toggleModal2);
+    });
+})();
+
+$(document).ready(function () {
+    $("[data-corso-id]").on("click", async function () {
+        let corsoId = $(this).data("corso-id"); // Recupera l'ID
+        try {
+            let response = await fetch(`/corsi/get?id=${corsoId}`);
+            if (!response.ok) throw new Error("Errore nel recupero dati");
+            let corso = await response.json();
+
+            toggleModalEdit(corso.id, corso.nome, corso.cfu, corso.docente, corso.annoSvolgimento, corso.stato, corso.note);
+
+        } catch (error) {
+            console.error("Errore:", error);
+        }
+    });
+});
+
+const toggleModalEdit = ($id,$nome, $codice, $cfu, $docente, $annoSvolgimento, $stato, $note) => {
+    console.log($id, $nome, $cfu);
+    $('#modalEditCorsi').toggleClass('open');
+    //$('#modalEditCorsi')
+};
+
+
+
+document.querySelectorAll('.modalEditCorsiButton').forEach(button => {
+    button.addEventListener('click', toggleModalEdit);
+});

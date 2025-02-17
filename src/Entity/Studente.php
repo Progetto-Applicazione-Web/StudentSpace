@@ -52,18 +52,11 @@ class Studente
     #[ORM\OneToMany(targetEntity: Corso::class, mappedBy: 'studente')]
     private Collection $corsi;
 
-    /**
-     * @var Collection<int, TodoList>
-     */
-    #[ORM\OneToMany(targetEntity: TodoList::class, mappedBy: 'studente', cascade: ['persist', 'remove'])]
-    private Collection $todolists;
-
     public function __construct()
     {
         $this->tasse = new ArrayCollection();
         $this->esami = new ArrayCollection();
         $this->corsi = new ArrayCollection();
-        $this->todolists = new ArrayCollection();
     }
 
     public function getId(): ?int

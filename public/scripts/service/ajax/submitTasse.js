@@ -43,3 +43,31 @@ $(document).ready(function () {
     });
   });
 });
+
+(function () {
+  const modalTasseButton = document.querySelectorAll('.modalTasseButton');
+  const modalTasse = document.getElementById('modalTasse');
+
+  const toggleModal1 = () => {
+    console.log("Check");
+    modalTasse.classList.toggle('open');
+  };
+
+  modalTasseButton.forEach(button => {
+    button.addEventListener('click', toggleModal1);
+  });
+})();
+
+(function () {
+  const modalEditTasseButton = document.querySelectorAll('.modalEditTasseButton');
+  const modalEditTasse = document.getElementById('modalEditTasse');
+
+  const toggleModalEdit1 = () => {
+    console.log("Check");
+    modalEditTasse.classList.toggle('open');
+  };
+
+  modalEditTasseButton.forEach(button => {
+    button.addEventListener('click', toggleModalEdit1);
+  });
+})();

@@ -17,6 +17,7 @@
         input.classList.add("input-outlines");
       });
       button.textContent = "Salva";  // Cambia in Salva
+      button.id = "save";
       if (eliminaBtn) {
         eliminaBtn.textContent = "Annulla"; // Imposta Elimina in Annulla
       }
@@ -27,6 +28,7 @@
         input.classList.remove("input-outlines");
       });
       button.textContent = "Modifica"; // Torna a Modifica
+      button.id = "edit";
       if (eliminaBtn) {
         eliminaBtn.textContent = "Elimina"; // Torna a Elimina
       }
@@ -53,8 +55,6 @@
       // Ferma la propagazione: così il listener che apre il popup non verrà eseguito
       event.stopImmediatePropagation();
     }
-    // Se il bottone è in stato "Elimina", qui si può gestire la logica di eliminazione
-    // (oppure lasciare il secondo IIFE che apre il popup)
   };
 
   modificaButton.forEach(button => {

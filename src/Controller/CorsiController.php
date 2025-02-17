@@ -115,12 +115,10 @@ class CorsiController extends AbstractController
 
         if ($id === null) return new JsonResponse(HttpError::BAD_REQUEST->getWithCustomMessage("Il parametro id deve essere valido per poter modificare il corso!"));
 
-
         $corso = $this->entityManager->getRepository(Corso::class)->getCorsoById($id);
 
         if ($corso == null)
             return new JsonResponse(HttpError::NOT_FOUNT->getWithCustomMessage("Non trovato corsi/edit?id=$id"));
-
 
         if ($nome != null) $corso->setNome($nome);
         if ($annoSvolgimento != null) $corso->setAnnoSvolgimento($annoSvolgimento);
