@@ -159,6 +159,8 @@ const toggleModalEdit = ($id, $icona, $nome, $codice, $docente, $anno_svolgiment
     $("#iconaEdit").attr("value", $icona);
     $("#nomeEdit").attr("value", $nome);
     $("#anno_svolgimentoEdit").attr("value", $anno_svolgimento);
+    $("#docenteEdit").attr("value", $docente);
+    $("#codiceEdit").attr("value", $codice);
 
 };
 
