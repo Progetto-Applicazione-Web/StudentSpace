@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Corso;
 use App\Entity\StatoCorso;
-use App\Entity\Studente;
 use App\Entity\Utente;
 use App\HttpUtils\HttpError;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,11 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-
 #[Route('/corsi')]
 class CorsiController extends AbstractController
 {
@@ -116,11 +112,15 @@ class CorsiController extends AbstractController
         if ($id === null) return new JsonResponse(HttpError::BAD_REQUEST->getWithCustomMessage("Il parametro id deve essere valido per poter modificare il corso!"));
 
         $corso = $this->entityManager->getRepository(Corso::class)->getCorsoById($id);
+        $stato = $this->entityManager->getRepository(StatoCorso::class)->findOneBy(['id' => $statoId]);
+
 
         if ($corso == null)
             return new JsonResponse(HttpError::NOT_FOUNT->getWithCustomMessage("Non trovato corsi/edit?id=$id"));
 
+        if ($icona != null) $corso->setIcona($icona);
         if ($nome != null) $corso->setNome($nome);
+        if ($stato != null) $corso->setStato($stato);
         if ($annoSvolgimento != null) $corso->setAnnoSvolgimento($annoSvolgimento);
         if ($codice != null) $corso->setCodice($codice);
         if ($docente != null) $corso->setDocente($docente);
