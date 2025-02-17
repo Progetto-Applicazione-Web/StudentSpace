@@ -40,13 +40,15 @@ class CorsiController extends AbstractController
         ]);
     }
 
-    #[Route('/get/{id}', name: 'api_get_corso', requirements: ['id' => Requirement::DIGITS])]
-    public function getCorso(int $id): JsonResponse
+    #[Route('/get', name: 'api_get_corso', requirements: ['id' => Requirement::DIGITS])]
+    public function getCorso(
+        Request $request,
+    ): JsonResponse
     {
         if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
-
-        $corso = $this->entityManager->getRepository(Corso::class)->getCorsoById($id);
-
+        $id = $request->get('id');
+        if (!is_numeric($id)) return new JsonResponse(HttpError::BAD_REQUEST->getWithCustomMessage("L'id del corso non è valido!"));
+        $corso = $this->entityManager->getRepository(Corso::class)->getCorsoById((int)$id);
         return !($corso == null) ? new JsonResponse($corso->toArray()) : new JsonResponse();
     }
 
@@ -57,25 +59,15 @@ class CorsiController extends AbstractController
     {
         if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
 
-        $icona = $request->request->get("icona");
+        $icona = $request->get("icona");
+        $nome = strip_tags($request->get("nome"));
+        $codice = strip_tags($request->get("codice"));
+        $cfu = strip_tags($request->get("cfu"));
+        $docente = strip_tags($request->get("docente"));
+        $annoSvolgimento = strip_tags($request->get("anno_svolgimento"));
+        $note = strip_tags($request->get("note"));
+        $statoId = (int)strip_tags($request->get("stato_id"));
 
-        $nome = strip_tags($request->request->get("nome"));
-        $codice = strip_tags($request->request->get("codice"));
-        $cfu = strip_tags($request->request->get("cfu"));
-        $docente = strip_tags($request->request->get("docente"));
-        $annoSvolgimento = strip_tags($request->request->get("anno_svolgimento"));
-        $note = strip_tags($request->request->get("note"));
-        $statoId = (int)strip_tags($request->request->get("stato_id"));
-        /*
-         dd([
-             'nome' => $nome,
-             'codice' => $codice,
-             'cfu' => $cfu,
-             'docente' => $docente,
-             'anno_svolgimento' => $annoSvolgimento,
-             'note' => $note,
-             'stato_id' => $statoId
-         ]);*/
         // Controllo se lo stato esiste
         $stato = $this->entityManager->getRepository(StatoCorso::class)->findOneBy(['id' => $statoId]);
         if ($stato == null) return new JsonResponse(HttpError::BAD_REQUEST->getWithCustomMessage("Lo stato del corso che hai passato non é valido!"));
@@ -106,23 +98,29 @@ class CorsiController extends AbstractController
 
     #[Route('/edit', name: 'api_edit_corso')]
     public function editCorso(
-        #[MapQueryParameter] ?int $id,
-        #[MapQueryParameter] ?string $nome,
-        #[MapQueryParameter('anno_svolgimento')] ?string $annoSvolgimento,
-        #[MapQueryParameter] ?string $codice,
-        #[MapQueryParameter] ?string $docente,
-        #[MapQueryParameter] ?int $cfu,
-        #[MapQueryParameter] ?string $note
+        Request $request
     ): JsonResponse
     {
         if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
+
+        $id = $request->get("id");
+        $icona = $request->get("icona");
+        $nome = strip_tags($request->get("nome"));
+        $codice = strip_tags($request->get("codice"));
+        $cfu = strip_tags($request->get("cfu"));
+        $docente = strip_tags($request->get("docente"));
+        $annoSvolgimento = strip_tags($request->get("anno_svolgimento"));
+        $note = strip_tags($request->get("note"));
+        $statoId = (int)strip_tags($request->get("stato_id"));
+        
         if ($id === null) return new JsonResponse(HttpError::BAD_REQUEST->getWithCustomMessage("Il parametro id deve essere valido per poter modificare il corso!"));
+
 
         $corso = $this->entityManager->getRepository(Corso::class)->getCorsoById($id);
 
-        if ($corso == null) {
+        if ($corso == null)
             return new JsonResponse(HttpError::NOT_FOUNT->getWithCustomMessage("Non trovato corsi/edit?id=$id"));
-        }
+
 
         if ($nome != null) $corso->setNome($nome);
         if ($annoSvolgimento != null) $corso->setAnnoSvolgimento($annoSvolgimento);

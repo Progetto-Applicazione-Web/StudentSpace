@@ -24,7 +24,7 @@ class CorsoRepository extends ServiceEntityRepository
         $this->security = $security;
     }
 
-    public function getCorsoById(int $id)
+    public function getCorsoById(int $id): ?Corso
     {
         $studente = $this->getEntityManager()->getRepository(Utente::class)->getUtenteByUsername($this->security->getUser()->getUserIdentifier())->getStudente();
         if ($studente == null ) return null;
