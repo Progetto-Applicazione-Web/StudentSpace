@@ -112,7 +112,7 @@ class CorsiController extends AbstractController
         $annoSvolgimento = strip_tags($request->get("anno_svolgimento"));
         $note = strip_tags($request->get("note"));
         $statoId = (int)strip_tags($request->get("stato_id"));
-        
+
         if ($id === null) return new JsonResponse(HttpError::BAD_REQUEST->getWithCustomMessage("Il parametro id deve essere valido per poter modificare il corso!"));
 
 

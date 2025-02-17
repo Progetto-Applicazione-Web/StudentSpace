@@ -52,11 +52,18 @@ class Studente
     #[ORM\OneToMany(targetEntity: Corso::class, mappedBy: 'studente')]
     private Collection $corsi;
 
+    /**
+     * @var Collection<int, TodoList>
+     */
+    #[ORM\OneToMany(targetEntity: TodoList::class, mappedBy: 'studente', cascade: ['persist', 'remove'])]
+    private Collection $todolists;
+
     public function __construct()
     {
         $this->tasse = new ArrayCollection();
         $this->esami = new ArrayCollection();
         $this->corsi = new ArrayCollection();
+        $this->todolists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -211,5 +218,35 @@ class Studente
             'esami' => array_map(fn($esame) => $esame->toArray(), $this->esami->toArray()),
             'corsi' => "",//array_map(fn($corso) => $corso->toArray(), $this->corsi->toArray())
         ];
+    }
+
+    /**
+     * @return Collection<int, TodoList>
+     */
+    public function getTodolists(): Collection
+    {
+        return $this->todolists;
+    }
+
+    public function addTodolist(TodoList $todolist): static
+    {
+        if (!$this->todolists->contains($todolist)) {
+            $this->todolists->add($todolist);
+            $todolist->setStudente($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTodolist(TodoList $todolist): static
+    {
+        if ($this->todolists->removeElement($todolist)) {
+            // set the owning side to null (unless already changed)
+            if ($todolist->getStudente() === $this) {
+                $todolist->setStudente(null);
+            }
+        }
+
+        return $this;
     }
 }

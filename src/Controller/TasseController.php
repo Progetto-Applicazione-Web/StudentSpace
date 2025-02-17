@@ -38,12 +38,12 @@ class TasseController extends AbstractController
     {
         if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
 
-        $importo = (double)strip_tags($request->request->get('importo'));
-        $scadenza = strip_tags($request->request->get('scadenza'));
-        $descrizione = strip_tags($request->request->get('descrizione'));
-        strip_tags($request->request->get('pagato'));
-        $isPagato = strip_tags($request->request->get('pagato')) === "true";
-        $dataPagamento = strip_tags($request->request->get('dataPagamento'));
+        $importo = (double)strip_tags($request->get('importo'));
+        $scadenza = strip_tags($request->get('scadenza'));
+        $descrizione = strip_tags($request->get('descrizione'));
+        strip_tags($request->get('pagato'));
+        $isPagato = strip_tags($request->get('pagato')) === "true";
+        $dataPagamento = strip_tags($request->get('dataPagamento'));
 
         $tassa = new Tassa();
         if (($importo <= 0 || $dataPagamento == "") and $isPagato) {

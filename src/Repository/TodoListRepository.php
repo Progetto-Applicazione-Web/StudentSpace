@@ -3,41 +3,28 @@
 namespace App\Repository;
 
 use App\Entity\TodoList;
+use App\Entity\Utente;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bundle\SecurityBundle\Security;
 
 /**
  * @extends ServiceEntityRepository<TodoList>
  */
 class TodoListRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private Security $security;
+    public function __construct(ManagerRegistry $registry, Security $security)
     {
         parent::__construct($registry, TodoList::class);
+        $this->security = $security;
     }
 
-    //    /**
-    //     * @return TodoList[] Returns an array of TodoList objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('t.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function getTodoListById(int $id): ?TodoList
+    {
+        $studente = $this->getEntityManager()->getRepository(Utente::class)->getUtenteByUsername($this->security->getUser()->getUserIdentifier())->getStudente();
+        if ($studente == null ) return null;
 
-    //    public function findOneBySomeField($value): ?TodoList
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        return $this->findOneBy(['id' => $id, 'studente' => $studente]);
+    }
 }

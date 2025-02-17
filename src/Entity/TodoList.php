@@ -22,8 +22,11 @@ class TodoList
     /**
      * @var Collection<int, Task>
      */
-    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'todoList', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'todoList', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $tasks;
+
+    #[ORM\ManyToOne(inversedBy: 'todolists')]
+    private ?Studente $studente = null;
 
     public function __construct()
     {
@@ -45,6 +48,13 @@ class TodoList
         $this->titolo = $titolo;
 
         return $this;
+    }
+
+    public function isCompletato(): ?bool
+    {
+        foreach ($this->tasks as $task) if (!$task->isCompletato()) return false;
+
+        return true;
     }
 
     /**
@@ -73,6 +83,18 @@ class TodoList
                 $task->setTodoList(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStudente(): ?Studente
+    {
+        return $this->studente;
+    }
+
+    public function setStudente(?Studente $studente): static
+    {
+        $this->studente = $studente;
 
         return $this;
     }

@@ -17,14 +17,11 @@ class Task
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $titolo = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descrizione = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $descrizione = "";
 
     #[ORM\Column]
-    private ?bool $completato = null;
+    private ?bool $completato = false;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false)]
@@ -33,18 +30,6 @@ class Task
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitolo(): ?string
-    {
-        return $this->titolo;
-    }
-
-    public function setTitolo(string $titolo): static
-    {
-        $this->titolo = $titolo;
-
-        return $this;
     }
 
     public function getDescrizione(): ?string
