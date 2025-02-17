@@ -1,4 +1,28 @@
 $(document).ready(function () {
+
+    // (Opzionale) Funzione di controllo per abilitare/disabilitare il pulsante
+    // Se preferisci il secondo metodo, puoi aggiornare lo stato del pulsante in tempo reale.
+    // In questo esempio, lasciamo il pulsante sempre abilitato in modo da poter mostrare l'alert.
+    function checkFields() {
+        var icona = $('#icona').val();
+        var nome = $('#nome').val();
+        var codice = $('#codice').val();
+        var cfu = $('#cfu').val();
+        var docente = $('#docente').val();
+        var anno_svolgimento = $('#anno_svolgimento').val();
+        var stato_id = $('#stato').val();
+
+        // Se vuoi visualizzare un feedback visivo, potresti aggiungere una classe o simili.
+        // Per questo esempio non modifichiamo il bottone.
+    }
+
+    // Aggiorna il controllo al variare degli input
+    $('#icona, #nome, #codice, #cfu, #docente, #anno_svolgimento, #stato').on('keyup change', checkFields);
+
+
+
+
+
     $('#formAddCorso').on('submit', function (event) {
         event.preventDefault();
 
@@ -10,6 +34,13 @@ $(document).ready(function () {
         var $anno_svolgimento = $('#anno_svolgimento').val();
         var $stato_id = $('#stato').val();
         var $note = $('#note').val();
+
+
+        // Controlla se uno dei campi obbligatori è vuoto
+        if (!$icona || !$nome || !$codice || !$cfu || !$docente || !$anno_svolgimento || !$stato_id) {
+            alert("Inserisci tutti i dati mancanti");
+            return; // Interrompe l'esecuzione se manca qualche dato
+        }
 
         addCorso(
             $icona,
@@ -60,6 +91,9 @@ function addCorso($icona, $nome, $codice, $cfu, $docente, $anno_svolgimento, $st
 
             // Chiudi il modal: nascondi il form, resetta gli input e poi lo mostra di nuovo
             $('#formAddCorso')[0].reset();
+
+            $('#modalCorsi').removeClass('open');
+
 
         },
         error: function (response) {

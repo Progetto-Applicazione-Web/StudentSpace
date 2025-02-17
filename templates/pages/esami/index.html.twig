@@ -13,7 +13,7 @@
 		<div class="flex flex-col basis-2/6 bg-transparent gap-4 ">
 			<!-- Superati -->
 			<p class="p text-grayy">Superati</p>
-			<div class="gap-4 flex flex-col overflow-y-scroll scrollbar-none">
+			<div id="superati"  class="gap-4 flex overflow-x-hidden flex-col lg:max-w-[350px] overflow-y-scroll scrollbar-none">
 				{% for corso in corsi %}
 					{% for esame in corso.esami %}
 						{% set voto = esame.voto %}
@@ -71,7 +71,7 @@
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			var calendarEl = document.getElementById('calendar');
-			const calendar = new FullCalendar.Calendar(calendarEl, {
+			window.calendar = new FullCalendar.Calendar(calendarEl, {
 				initialView: 'dayGridMonth',
 				headerToolbar: {
 					start: 'title',

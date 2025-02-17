@@ -14,7 +14,7 @@
 				<p class="w-full p text-grayy font-bold">Corso di
 					<select id="corso" class="font-normal">
 						{% for corso in app.user.studente.corsi %}
-							<option value="{{ corso.id }}">{{ corso.icona }} {{ corso.nome }}</option>
+							<option value="{{ corso.id }}" data-corso="{{ corso.icona }} {{ corso.nome }} ∙ {{ corso.cfu }} CFU">{{ corso.icona }} {{ corso.nome }}</option>
 						{% endfor %}
 					</select>
 				</p>
@@ -34,7 +34,7 @@
 						<span class="peer-checked:text-[var(--primary-color)] font-bold">Rifiuto</span>
 					</label>
 				</div>
-                <button class="modalEsamiButton mt-auto  self-end p text-blackk bg-primary text-whitee rounded-[10px] px-5 py-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">Aggiungi</button>
+                <button class=" mt-auto  self-end p text-blackk bg-primary text-whitee rounded-[10px] px-5 py-3 cursor-pointer hover:brightness-120 transition-all duration-500" type="submit">Aggiungi</button>
 			</div>
 		</div>
 	</form>
