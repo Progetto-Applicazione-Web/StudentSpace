@@ -70,7 +70,7 @@ function addCorso($icona, $nome, $codice, $cfu, $docente, $anno_svolgimento, $st
 
             var $corsi = $('#corsi');
             // Costruisci l'HTML del nuovo corso in modo da rispettare lo stile Tailwind
-            var nuovoCorso = '<div class="flex items-center justify-between px-[30px] py-[20px] border-2 br-bg rounded-[30px]">';
+            var nuovoCorso = '<div class="flex items-center cursor-pointer justify-between px-[30px] py-[20px] border-2 br-bg rounded-[30px]">';
             nuovoCorso += '  <div class="flex items-center gap-5">';
             nuovoCorso += '      <p class="heading-1">' + $icona + '</p>';
             nuovoCorso += '      <div>';
