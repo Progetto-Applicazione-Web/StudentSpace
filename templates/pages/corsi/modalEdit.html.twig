@@ -25,7 +25,9 @@
 				<img class="modalEditCorsiButton aspect-square h-[30px] cursor-pointer" src="{{ asset('icons/close.svg') }}" alt="Chiudi">
 			</span>
 
-			<h1 class="flex heading-1 text-blackk gap-4"><input disabled placeholder="📖" type="text" maxlength="2" class="w-[60px] rounded-[10px]"><input disabled placeholder="Nome" type="text" class=" rounded-[10px]"></h1>
+			<h1 class="flex heading-1 text-blackk gap-4">
+				<input id="iconaEdit" disabled placeholder="📖" type="text" maxlength="2" class="w-[60px] rounded-[10px]">
+				<input id="nomeEdit" disabled placeholder="Nome" type="text" class=" rounded-[10px]"></h1>
 			<div class="flex w-full flex-col gap-2 items-start">
 				<p class="w-full p text-grayy"><input disabled type="text" class="rounded-[10px]" placeholder="Codice Corso"></p>
 				<p class="w-full p text-grayy">CFU: <input disabled type="number" min="1" max="12" class=" rounded-[10px]"></p>
@@ -36,7 +38,7 @@
 
 
 				<p class="p text-grayy">Anno
-				<select disabled>
+				<select id="anno_svolgimentoEdit" disabled>
 					<option>1°</option>
 					<option>2°</option>
 					<option>3°</option>
