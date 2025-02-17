@@ -72,6 +72,7 @@
 		document.addEventListener('DOMContentLoaded', function() {
 			var calendarEl = document.getElementById('calendar');
 			window.calendar = new FullCalendar.Calendar(calendarEl, {
+				events: '/esami/feed_flcalendar',
 				initialView: 'dayGridMonth',
 				headerToolbar: {
 					start: 'title',

@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Corso;
 use App\Entity\Esame;
+use App\Entity\Studente;
+use App\Entity\Utente;
 use App\HttpUtils\HttpError;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -86,6 +89,31 @@ class EsamiController extends AbstractController
             'message' => 'Esame aggiunto',
             'id' => $esame->getId(),
         ]);
+    }
+
+    #[Route('/esami/feed_flcalendar', name: 'api_flcalendar')]
+    public function feedFlCalendar(
+        Request $request,
+    ): JsonResponse
+    {
+        if (!$this->isGranted('IS_AUTHENTICATED')) return new JsonResponse(HttpError::UNAUTHORIZED->getJsonMessage());
+
+        $eventi = [];
+        $studente = $this->entityManager->getRepository(Utente::class)->getUtenteByUsername($this->getUser()->getUserIdentifier())->getStudente();
+        if ($studente == null) return new JsonResponse($eventi);
+
+
+        $esami = $studente->getEsami();
+
+        foreach ($esami as $esame) {
+            $eventi[] = [
+                "title" => $esame->getNome(),
+                'start' => DateTime::createFromFormat('d/m/Y', $esame->getDataSvolgimento())->format('Y-m-d'),
+                'allDay' => true
+            ];
+        }
+
+        return new JsonResponse($eventi);
     }
 
     #[Route('/esami/accetta', name: 'api_accetta')]
